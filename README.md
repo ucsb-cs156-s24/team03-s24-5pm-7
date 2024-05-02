@@ -1,8 +1,6 @@
-# STARTER-team03
+# team03-s24-5pm-7
 
 Instructions: <https://ucsb-cs156.github.io/s24/lab/team03.html>
-
-TODO: change heading above to your repo name, e.g. `# team03-s24-4pm-4`
 
 TODO: Add a link to the deployed Dokku app for your team here, e.g.
 
@@ -15,7 +13,7 @@ TODO: Fill in this table with correct information.
 
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
+| UCSBDiningCommonsMenuItem |   Kate L.    |katelarrick|
 | UCSBOrganization          |              |           |
 | RecommendationRequest     |              |           |
 | MenuItemReview            |              |           |
