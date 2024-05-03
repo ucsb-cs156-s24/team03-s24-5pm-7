@@ -15,7 +15,7 @@ TODO: Fill in this table with correct information.
 |---------------------------|--------------|-----------|
 | UCSBDiningCommonsMenuItem |   Kate L.    |katelarrick|
 | UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
+| RecommendationRequest     | Adil Ahmed   | adilahmed2|
 | MenuItemReview            |              |           |
 | HelpRequest               |              |           |
 | Articles                  |              |           |
