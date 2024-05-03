@@ -17,7 +17,7 @@ TODO: Fill in this table with correct information.
 | UCSBOrganization          |              |           |
 | RecommendationRequest     | Adil Ahmed   | adilahmed2|
 | MenuItemReview            |              |           |
-| HelpRequest               |              |           |
+| HelpRequest               |  Grace Feng  |gracefeng05|
 | Articles                  |      June Bi |  zhenbi93 |
 
 Remember though, that in spite of these initial  assignments, it is still
