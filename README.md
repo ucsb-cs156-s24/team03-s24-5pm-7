@@ -14,7 +14,7 @@ TODO: Fill in this table with correct information.
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
 | UCSBDiningCommonsMenuItem |   Kate L.    |katelarrick|
-| UCSBOrganization          |              |           |
+| UCSBOrganization          | Aneesh A.    |aneeshtheplug|
 | RecommendationRequest     | Adil Ahmed   | adilahmed2|
 | MenuItemReview            |              |           |
 | HelpRequest               |  Grace Feng  |gracefeng05|
