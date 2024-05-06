@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["name", "diningCommonsCode", "station"];
+    const expectedHeaders = ["Name", "Dining commons code", "Station"];
     const testId = "UCSBDiningCommonsMenuItemForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -88,14 +88,15 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         fireEvent.click(submitButton);
 
         await screen.findByText(/Name is required/);
-        expect(screen.getByText(/diningCommonsCode is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Dining commons code is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Station is required/)).toBeInTheDocument();
 
         const nameInput = screen.getByTestId(`${testId}-name`);
-        fireEvent.change(nameInput, { target: { value: "a".repeat(101) } });
+        fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
         fireEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
+            expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
         });
     });
 
