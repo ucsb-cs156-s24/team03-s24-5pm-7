@@ -7,14 +7,12 @@ Deployments:
 * Prod: <https://team03.dokku-15.cs.ucsb.edu>
 * QA:  <https://team03-qa.dokku-15.cs.ucsb.edu>
 
-TODO: Fill in this table with correct information. 
-
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
 | UCSBDiningCommonsMenuItem |   Kate L.    |katelarrick|
 | UCSBOrganization          | Aneesh A.    |aneeshtheplug|
 | RecommendationRequest     | Adil Ahmed   | adilahmed2|
-| MenuItemReview            |              |           |
+| MenuItemReview            |  Koray K.    |koraykondakci|
 | HelpRequest               |  Grace Feng  |gracefeng05|
 | Articles                  |      June Bi |  zhenbi93 |
 
