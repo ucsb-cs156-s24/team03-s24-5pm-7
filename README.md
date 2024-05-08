@@ -2,21 +2,17 @@
 
 Instructions: <https://ucsb-cs156.github.io/s24/lab/team03.html>
 
-TODO: Add a link to the deployed Dokku app for your team here, e.g.
-
 Deployments:
 
-* Prod: <https://team03.dokku-17.cs.ucsb.edu>
-* QA:  https://team03-qa.dokku-15.cs.ucsb.edu
-
-TODO: Fill in this table with correct information. 
+* Prod: <https://team03.dokku-15.cs.ucsb.edu>
+* QA:  <https://team03-qa.dokku-15.cs.ucsb.edu>
 
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
 | UCSBDiningCommonsMenuItem |   Kate L.    |katelarrick|
 | UCSBOrganization          | Aneesh A.    |aneeshtheplug|
 | RecommendationRequest     | Adil Ahmed   | adilahmed2|
-| MenuItemReview            |              |           |
+| MenuItemReview            |  Koray K.    |koraykondakci|
 | HelpRequest               |  Grace Feng  |gracefeng05|
 | Articles                  |      June Bi |  zhenbi93 |
 
