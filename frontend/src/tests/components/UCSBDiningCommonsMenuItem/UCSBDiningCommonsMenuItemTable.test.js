@@ -185,5 +185,3 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
     fireEvent.click(deleteButton);
   });
 });
-
-//Note
