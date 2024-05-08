@@ -186,4 +186,3 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
   });
 });
 
-//Note

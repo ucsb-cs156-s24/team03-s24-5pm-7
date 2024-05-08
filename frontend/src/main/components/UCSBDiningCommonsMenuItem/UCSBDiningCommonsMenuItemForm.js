@@ -24,7 +24,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
 
             {initialContents && (
                 <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="id">Id</Form.Label>
+                    <Form.Label htmlFor="id">id</Form.Label>
                     <Form.Control
                         data-testid={testIdPrefix + "-id"}
                         id="id"
@@ -46,8 +46,8 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                     {...register("name", {
                         required: "Name is required.",
                         maxLength : {
-                            value: 100,
-                            message: "Max length 100 characters"
+                            value: 30,
+                            message: "Max length 30 characters"
                         }
                     })}
                 />
