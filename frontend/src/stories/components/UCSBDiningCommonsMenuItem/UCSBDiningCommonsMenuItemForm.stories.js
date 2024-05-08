@@ -1,10 +1,10 @@
 import React from 'react';
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
-import {ucsbDiningCommonsMenuItemFixtures} from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm"
+import { ucsbDiningCommonsMenuItemFixtures } from 'fixtures/ucsbDiningCommonsMenuItemFixtures';
 
 export default {
     title: 'components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm',
-    component: UCSBDiningCommonsMenuItemForm,
+    component: UCSBDiningCommonsMenuItemForm
 };
 
 const Template = (args) => {
