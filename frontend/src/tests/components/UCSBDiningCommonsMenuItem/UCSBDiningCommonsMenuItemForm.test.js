@@ -55,6 +55,12 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
 
         expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
         expect(screen.getByText(`Id`)).toBeInTheDocument();
+
+        expect(await screen.findByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+        expect(screen.getByText(`diningCommonsCode`)).toBeInTheDocument();
+
+        expect(await screen.findByTestId(`${testId}-station`)).toBeInTheDocument();
+        expect(screen.getByText(`station`)).toBeInTheDocument();
     });
 
 
