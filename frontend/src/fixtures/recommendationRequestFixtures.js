@@ -7,7 +7,7 @@ const ucsbRecommendationRequestFixtures = {
         "dateNeeded": "2022-01-02T13:00:00",
         "done": false
     },
-    threeDates: [
+    threeRecommendationRequest: [
         {
             "id": 2,
             "requesterEmail": "adilahmed1@ucsb.edu",
