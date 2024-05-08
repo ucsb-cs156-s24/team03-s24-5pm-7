@@ -2,9 +2,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
-import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import {  ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+//import { ucsbDiningCommonsMenuItemFixtures } from "../../../fixtures/ucsbDiningCommonsMenuItemFixtures";
 
 const mockedNavigate = jest.fn();
 
@@ -16,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name", "Dining commons code", "Station"];
+    const expectedHeaders = ["name", "diningCommonsCode", "station"];
     const testId = "UCSBDiningCommonsMenuItemForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -54,7 +55,14 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         });
 
         expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-        expect(screen.getByText(`Id`)).toBeInTheDocument();
+        expect(screen.getByText('id')).toBeInTheDocument();
+
+        expect(await screen.findByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+        expect(screen.getByText('diningCommonsCode')).toBeInTheDocument();
+
+        expect(await screen.findByTestId(`${testId}-station`)).toBeInTheDocument();
+        expect(screen.getByText('station')).toBeInTheDocument();
+
     });
 
 
@@ -74,6 +82,17 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
     });
 
+    test("submit button", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <UCSBDiningCommonsMenuItemForm />
+                </Router>
+            </QueryClientProvider>
+        );
+        expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
+    });
+
     test("that the correct validations are performed", async () => {
         render(
             <QueryClientProvider client={queryClient}>
@@ -88,8 +107,8 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         fireEvent.click(submitButton);
 
         await screen.findByText(/Name is required/);
-        expect(screen.getByText(/Dining commons code is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Station is required/)).toBeInTheDocument();
+        expect(screen.getByText(/diningCommonsCode is required/)).toBeInTheDocument();
+        expect(screen.getByText(/station is required/)).toBeInTheDocument();
 
         const nameInput = screen.getByTestId(`${testId}-name`);
         fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });

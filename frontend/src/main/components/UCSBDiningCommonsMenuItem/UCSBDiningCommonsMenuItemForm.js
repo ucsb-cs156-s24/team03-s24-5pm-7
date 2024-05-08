@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
+    
     // Stryker disable all
     const {
         register,
@@ -13,16 +14,17 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
         { defaultValues: initialContents || {}, }
     );
     // Stryker restore all
-
+   
     const navigate = useNavigate();
 
     const testIdPrefix = "UCSBDiningCommonsMenuItemForm";
 
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
+
             {initialContents && (
                 <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="id">Id</Form.Label>
+                    <Form.Label htmlFor="id">id</Form.Label>
                     <Form.Control
                         data-testid={testIdPrefix + "-id"}
                         id="id"
@@ -35,7 +37,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             )}
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Label htmlFor="name">name</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-name"}
                     id="name"
@@ -55,14 +57,14 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="diningCommonsCode">Dining commons code</Form.Label>
+                <Form.Label htmlFor="diningCommonsCode">diningCommonsCode</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-diningCommonsCode"}
                     id="diningCommonsCode"
                     type="text"
                     isInvalid={Boolean(errors.diningCommonsCode)}
                     {...register("diningCommonsCode", {
-                        required: "Dining commons code is required."
+                        required: "diningCommonsCode is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -71,20 +73,21 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="station">Station</Form.Label>
+                <Form.Label htmlFor="station">station</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-station"}
                     id="station"
                     type="text"
                     isInvalid={Boolean(errors.station)}
                     {...register("station", {
-                        required: "Station is required."
+                        required: "station is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.station?.message}
                 </Form.Control.Feedback>
             </Form.Group>
+
 
             <Button
                 type="submit"
@@ -99,8 +102,10 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             >
                 Cancel
             </Button>
+
         </Form>
-    );
+
+    )
 }
 
 export default UCSBDiningCommonsMenuItemForm;
