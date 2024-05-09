@@ -77,12 +77,12 @@ describe("HelpRequestForm tests", () => {
 
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Requester email is required./);
-        expect(screen.getByText(/Team ID is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Table or breakout room is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Request time is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Solved is required./)).toBeInTheDocument();
+        await screen.findByText(/Requester email is required/);
+        expect(screen.getByText(/Team ID is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Table or breakout room is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Request time is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Solved is required/)).toBeInTheDocument();
 
     });
 
@@ -116,7 +116,7 @@ describe("HelpRequestForm tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(screen.querytByText(/Requester email is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Requester email is required/)).not.toBeInTheDocument();
         expect(screen.queryByText(/Team ID is required/)).not.toBeInTheDocument();
         expect(screen.queryByText(/Table or breakout room is required/)).not.toBeInTheDocument();
         expect(screen.queryByText(/Request time is required/)).not.toBeInTheDocument();
