@@ -19,7 +19,7 @@ export default function HelpRequestTable({ dates, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/ucsbdates/all"]
+        ["/api/helprequest/all"]
     );
     // Stryker restore all 
 
@@ -30,15 +30,15 @@ export default function HelpRequestTable({ dates, currentUser }) {
     const columns = [
         {
             Header: 'id',
-            accessor: 'id', // accessor is the "key" in the data
+            accessor: 'id',
         },
         {
             Header: 'RequesterEmail',
             accessor: 'requesterEmail',
         },
         {
-            Header: 'TeamID',
-            accessor: 'teamID',
+            Header: 'TeamId',
+            accessor: 'teamId',
         },
         {
             Header: 'TableOrBreakoutRoom',

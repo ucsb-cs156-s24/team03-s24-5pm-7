@@ -29,8 +29,8 @@ describe("UserTable tests", () => {
 
     );
 
-    const expectedHeaders = ["id", "RequesterEmail", "TeamID", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
-    const expectedFields = ["id", "requesterEmail", "teamID", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
+    const expectedHeaders = ["id", "RequesterEmail", "TeamId", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
+    const expectedFields = ["id", "requesterEmail", "teamId", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
     const testId = "HelpRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -44,7 +44,28 @@ describe("UserTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-teamId`)).toHaveTextContent("15");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-tableOrBreakoutRoom`)).toHaveTextContent("7");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-requestTime`)).toHaveTextContent("2022-01-02T12:00:00")
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-solved`)).toHaveTextContent("true");
+
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamId`)).toHaveTextContent("16");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("8");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-04-03T12:00:00")
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`)).toHaveTextContent("true");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamId`)).toHaveTextContent("17");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("9");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-07-04T12:00:00")
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`)).toHaveTextContent("false");
 
     const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).not.toBeInTheDocument();
@@ -53,7 +74,6 @@ describe("UserTable tests", () => {
     expect(deleteButton).not.toBeInTheDocument();
 
   });
-
   test("Has the expected colum headers and content for adminUser", () => {
 
     const currentUser = currentUserFixtures.adminUser;
@@ -67,8 +87,8 @@ describe("UserTable tests", () => {
 
     );
 
-    const expectedHeaders = ["id", "RequesterEmail", "TeamID", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
-    const expectedFields = ["id", "requesterEmail", "teamID", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
+    const expectedHeaders = ["id", "RequesterEmail", "TeamId", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
+    const expectedFields = ["id", "requesterEmail", "teamId", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
     const testId = "HelpRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -101,7 +121,8 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests
+          } currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -118,4 +139,60 @@ describe("UserTable tests", () => {
 
   });
 
+ test("Delete button calls the delete mutation for admin user", async () => {
+
+        const currentUser = currentUserFixtures.adminUser;
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests
+          } currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+
+    );
+
+    // Idk what this does
+    await waitFor(() => { expect(screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+
+    const deleteButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Delete-button`);
+    expect(deleteButton).toBeInTheDocument();
+
+        fireEvent.click(deleteButton);
+    });
+
+  test("Delete button calls delete callback", async () => {
+    // arrange
+    const currentUser = currentUserFixtures.adminUser;
+
+    // act - render the component
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests
+          } currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+
+    );
+
+    // assert - check that the expected content is rendered
+    expect(
+      await screen.findByTestId(
+        `HelpRequestTable-cell-row-0-col-id`,
+      ),
+    ).toHaveTextContent("1");
+    // expect(
+    //   screen.getByTestId(`HelpRequestTable-cell-row-0-col-name`),
+    // ).toHaveTextContent("");
+
+    const deleteButton = screen.getByTestId(
+      `HelpRequestTable-cell-row-0-col-Delete-button`,
+    );
+    expect(deleteButton).toBeInTheDocument();
+
+    // act - click the delete button
+    fireEvent.click(deleteButton);
+  });
 });
