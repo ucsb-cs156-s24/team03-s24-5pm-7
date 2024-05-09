@@ -45,7 +45,7 @@ describe("UserTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-teamId`)).toHaveTextContent("15");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-teamID`)).toHaveTextContent("15");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-tableOrBreakoutRoom`)).toHaveTextContent("7");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requestTime`)).toHaveTextContent("2022-01-02T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
@@ -53,7 +53,7 @@ describe("UserTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamId`)).toHaveTextContent("16");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamID`)).toHaveTextContent("16");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("8");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-04-03T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
@@ -61,7 +61,7 @@ describe("UserTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamId`)).toHaveTextContent("17");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-teamID`)).toHaveTextContent("17");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("9");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-07-04T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
