@@ -1,6 +1,6 @@
 const helpRequestFixtures = {
     oneHelpRequest: {
-        "id": 1,
+        "id": "1",
         "requesterEmail": "gracefeng@ucsb.edu",
         "teamID": "15",
         "tableOrBreakoutRoom": "7",
@@ -10,7 +10,7 @@ const helpRequestFixtures = {
     },
     threeHelpRequests: [
         {
-            "id": 1,
+            "id": "1",
             "requesterEmail": "gracefeng@ucsb.edu",
             "teamID": "15",
             "tableOrBreakoutRoom": "7",
@@ -19,7 +19,7 @@ const helpRequestFixtures = {
             "solved": "true"
         },
         {
-            "id": 2,
+            "id": "2",
             "requesterEmail": "gracefeng@ucsb.edu",
             "teamID": "16",
             "tableOrBreakoutRoom": "8",
@@ -28,7 +28,7 @@ const helpRequestFixtures = {
             "solved": "true"
         },
         {
-            "id": 3,
+            "id": "3",
             "requesterEmail": "gracefeng@ucsb.edu",
             "teamID": "17",
             "tableOrBreakoutRoom": "9",
