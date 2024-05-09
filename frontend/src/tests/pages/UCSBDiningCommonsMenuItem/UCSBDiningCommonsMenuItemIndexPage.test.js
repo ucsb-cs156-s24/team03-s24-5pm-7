@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
 import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
-
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
@@ -23,9 +22,7 @@ jest.mock('react-toastify', () => {
 describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
-
     const testId = "UCSBDiningCommonsMenuItemTable";
-
     const setupUserOnly = () => {
         axiosMock.reset();
         axiosMock.resetHistory();
@@ -154,6 +151,3 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
     });
 
 });
-
-
-
