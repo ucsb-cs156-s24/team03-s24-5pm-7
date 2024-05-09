@@ -45,6 +45,7 @@ describe("HelpRequestForm tests", () => {
                 <HelpRequestForm />
             </Router>
         );
+
         await screen.findByTestId("HelpRequestForm-requesterEmail");
         const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
         const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
@@ -65,6 +66,55 @@ describe("HelpRequestForm tests", () => {
         await screen.findByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu/);
         expect(screen.getByText(/The input should be true or false/)).toBeInTheDocument();
     });
+
+    test("Error message on invalid email pattern", async () => {
+        render(
+            <Router>
+                <HelpRequestForm />
+            </Router>
+        );
+        await screen.findByTestId("HelpRequestForm-requesterEmail");
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+        // Change the value to an invalid email pattern
+        fireEvent.change(requesterEmailField, { target: { value: 'invalid_email' } });
+        // Fire other events to trigger validation if needed
+        // ...
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+        fireEvent.click(submitButton);
+        // Assert that the pattern-related error message is displayed
+        expect(screen.getByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu/)).toBeInTheDocument();
+    });
+
+    test("Error message when requesterEmail error is null or undefined", async () => {
+        render(
+            <Router>
+                <HelpRequestForm />
+            </Router>
+        );
+        // Don't change the value of requesterEmailField
+        // Fire other events to trigger validation if needed
+        // ...
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+        fireEvent.click(submitButton);
+        // Assert that the error message is displayed
+        expect(screen.getByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu/)).toBeInTheDocument();
+    });
+    
+    test("Error message when requesterEmail type is not 'pattern'", async () => {
+        render(
+            <Router>
+                <HelpRequestForm />
+            </Router>
+        );
+        // Change the value to trigger a validation error, but ensure type is not 'pattern'
+        fireEvent.change(requesterEmailField, { target: { value: 'invalid_email' } });
+        // Fire other events to trigger validation if needed
+        // ...
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+        fireEvent.click(submitButton);
+        // Assert that the error message is displayed
+        expect(screen.getByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu/)).toBeInTheDocument();
+    });    
 
     test("Correct Error messsages on missing input", async () => {
 
