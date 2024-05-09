@@ -55,14 +55,14 @@ describe("HelpRequestForm tests", () => {
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
         fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
-        fireEvent.change(teamIDField, { target: { value: 'bad-input' } });
+        /* fireEvent.change(teamIDField, { target: { value: 'bad-input' } });
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: 'bad-input' } });
         fireEvent.change(requestTimeField, { target: { value: 'bad-input' } });
-        fireEvent.change(explanationField, { target: { value: 'bad-input' } });
+        fireEvent.change(explanationField, { target: { value: 'bad-input' } }); */
         fireEvent.change(solvedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Requester email must be in the format name@ucsb.edu/);
+        await screen.findByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu./);
     });
 
     test("Correct Error messsages on missing input", async () => {

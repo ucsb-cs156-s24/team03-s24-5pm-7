@@ -76,7 +76,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             id="teamID"
                             type="text"
                             isInvalid={Boolean(errors.teamID)}
-                            {...register("name", {
+                            {...register("teamID", {
                                 required: "Team ID is required."
                             })}
                         />
@@ -94,7 +94,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             id="tableOrBreakoutRoom"
                             type="text"
                             isInvalid={Boolean(errors.tableOrBreakoutRoom)}
-                            {...register("name", {
+                            {...register("tableOrBreakoutRoom", {
                                 required: "Table or breakout room is required."
                             })}
                         />
