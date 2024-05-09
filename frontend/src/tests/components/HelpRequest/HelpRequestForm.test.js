@@ -91,7 +91,7 @@ describe("HelpRequestForm tests", () => {
     const requesterEmailField = screen.getByTestId(
       "HelpRequestForm-requesterEmail"
     );
-    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+    const teamIDField = screen.getByTestId("HelpRequestForm-teamId");
     const tableOrBreakoutRoomField = screen.getByTestId(
       "HelpRequestForm-tableOrBreakoutRoom"
     );
@@ -103,7 +103,7 @@ describe("HelpRequestForm tests", () => {
     fireEvent.change(requesterEmailField, {
       target: { value: "requesterEmail" },
     });
-    fireEvent.change(teamIdField, { target: { value: "teamId" } });
+    fireEvent.change(teamIDField, { target: { value: "teamId" } });
     fireEvent.change(tableOrBreakoutRoomField, {
       target: { value: "tableOrBreakoutRoom" },
     });
