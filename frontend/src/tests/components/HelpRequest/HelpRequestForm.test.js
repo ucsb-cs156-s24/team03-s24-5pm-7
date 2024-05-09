@@ -91,7 +91,7 @@ describe("HelpRequestForm tests", () => {
     const requesterEmailField = screen.getByTestId(
       "HelpRequestForm-requesterEmail"
     );
-    const teamIDField = screen.getByTestId("HelpRequestForm-teamId");
+    const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
     const tableOrBreakoutRoomField = screen.getByTestId(
       "HelpRequestForm-tableOrBreakoutRoom"
     );
