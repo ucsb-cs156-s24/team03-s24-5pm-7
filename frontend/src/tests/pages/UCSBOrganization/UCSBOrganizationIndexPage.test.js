@@ -117,37 +117,37 @@ describe("UCSBOrganizationIndexPage tests", () => {
         expect(screen.queryByTestId(`${testId}-cell-row-0-col-orgCode`)).not.toBeInTheDocument();
     });
 
-    // test("what happens when you click delete, admin", async () => {
-    //     // arrange
-    //     setupAdminUser();
-    //     const queryClient = new QueryClient();
-    //     axiosMock.onGet("/api/organizations/all").reply(200, ucsbOrganizationFixtures.threeOrgs);
-    //     axiosMock.onDelete("/api/organizations").reply(200, "UCSBOrganization with orgCode DSP was deleted");
+    test("what happens when you click delete, admin", async () => {
+        // arrange
+        setupAdminUser();
+        const queryClient = new QueryClient();
+        axiosMock.onGet("/api/ucsborganizations/all").reply(200, ucsbOrganizationFixtures.threeOrgs);
+        axiosMock.onDelete("/api/ucsborganizations").reply(200, "UCSBOrganization with orgCode DSP was deleted");
 
-    //     // act
-    //     render(
-    //         <QueryClientProvider client={queryClient}>
-    //             <MemoryRouter>
-    //                 <UCSBOrganizationIndexPage />
-    //             </MemoryRouter>
-    //         </QueryClientProvider>
-    //     );
+        // act
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <UCSBOrganizationIndexPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
 
-    //     // assert
-    //     await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toBeInTheDocument(); });
+        // assert
+        await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toBeInTheDocument(); });
 
-    //     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("DSP");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("DSP");
 
-    //     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-    //     expect(deleteButton).toBeInTheDocument();
+        const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+        expect(deleteButton).toBeInTheDocument();
 
-    //     // act
-    //     fireEvent.click(deleteButton);
+        // act
+        fireEvent.click(deleteButton);
 
-    //     // assert
-    //     await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBDate with orgCode DSP was deleted") });
+        // assert
+        await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBOrganization with orgCode DSP was deleted") });
 
-    // });
+    });
 
 });
 
