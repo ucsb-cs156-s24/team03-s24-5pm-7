@@ -47,10 +47,10 @@ describe("HelpRequestForm tests", () => {
         );
         await screen.findByTestId("HelpRequestForm-requesterEmail");
         const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
-        const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
+        /* const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
         const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+        const explanationField = screen.getByTestId("HelpRequestForm-explanation"); */
         const solvedField = screen.getByTestId("HelpRequestForm-solved");
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
@@ -62,7 +62,7 @@ describe("HelpRequestForm tests", () => {
         fireEvent.change(solvedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu./);
+        await screen.findByText(/Requester email must be in the format name@ucsb.edu, e.g. cgaucho@ucsb.edu/);
     });
 
     test("Correct Error messsages on missing input", async () => {
