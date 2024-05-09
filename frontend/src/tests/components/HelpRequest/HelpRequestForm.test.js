@@ -106,6 +106,7 @@ describe("HelpRequestForm tests", () => {
                 <HelpRequestForm />
             </Router>
         );
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
         // Change the value to trigger a validation error, but ensure type is not 'pattern'
         fireEvent.change(requesterEmailField, { target: { value: 'invalid_email' } });
         // Fire other events to trigger validation if needed
