@@ -16,7 +16,7 @@ const helpRequestFixtures = {
             "tableOrBreakoutRoom": "7",
             "requestTime": "2022-01-02T12:00:00",
             "explanation": "Dokku deployment issues.",
-            "solved": true
+            "solved": "true"
         },
         {
             "id": 2,
@@ -25,7 +25,7 @@ const helpRequestFixtures = {
             "tableOrBreakoutRoom": "8",
             "localDateTime": "2022-04-03T12:00:00",
             "explanation": "Dokku deployment issues.",
-            "solved": true
+            "solved": "true"
         },
         {
             "id": 3,
@@ -34,7 +34,7 @@ const helpRequestFixtures = {
             "tableOrBreakoutRoom": "9",
             "localDateTime": "2022-07-04T12:00:00",
             "explanation": "Dokku deployment issues.",
-            "solved": false
+            "solved": "false"
         },
     ]
 };
