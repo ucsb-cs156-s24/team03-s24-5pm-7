@@ -39,7 +39,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
           </Nav>
 
           <>
-            {/* be sure that each NavDropdown has a unique id and data-testid  */}
+            {/* be sure that each NavDropdown has a unique ids and data-testid  */}
           </>
 
           <Navbar.Collapse className="justify-content-between">
