@@ -77,7 +77,7 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Chicken Caesar Salad");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("Ortega");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("DLG");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-station`)).toHaveTextContent("Entrees");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
@@ -121,7 +121,7 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Chicken Caesar Salad");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("Ortega");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("DLG");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-station`)).toHaveTextContent("Entrees");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
