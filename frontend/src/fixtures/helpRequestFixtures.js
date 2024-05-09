@@ -23,7 +23,7 @@ const helpRequestFixtures = {
             "requesterEmail": "gracefeng@ucsb.edu",
             "teamID": "16",
             "tableOrBreakoutRoom": "8",
-            "localDateTime": "2022-04-03T12:00:00",
+            "requestTime": "2022-04-03T12:00:00",
             "explanation": "Dokku deployment issues.",
             "solved": "true"
         },
@@ -32,7 +32,7 @@ const helpRequestFixtures = {
             "requesterEmail": "gracefeng@ucsb.edu",
             "teamID": "17",
             "tableOrBreakoutRoom": "9",
-            "localDateTime": "2022-07-04T12:00:00",
+            "requestTime": "2022-07-04T12:00:00",
             "explanation": "Dokku deployment issues.",
             "solved": "false"
         },
