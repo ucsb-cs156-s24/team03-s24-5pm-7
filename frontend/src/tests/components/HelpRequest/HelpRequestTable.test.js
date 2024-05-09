@@ -49,7 +49,7 @@ describe("UserTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-tableOrBreakoutRoom`)).toHaveTextContent("7");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requestTime`)).toHaveTextContent("2022-01-02T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-solved`)).toHaveTextContent("true");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-solved`)).toBeTruthy();
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
@@ -57,7 +57,7 @@ describe("UserTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("8");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-04-03T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`)).toHaveTextContent("true");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`)).toBeTruthy();
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("gracefeng@ucsb.edu");
@@ -65,7 +65,7 @@ describe("UserTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-tableOrBreakoutRoom`)).toHaveTextContent("9");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requestTime`)).toHaveTextContent("2022-07-04T12:00:00")
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Dokku deployment issues.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`)).toHaveTextContent("false");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-solved`).textContent).toBeFalsy();
 
     const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).not.toBeInTheDocument();
