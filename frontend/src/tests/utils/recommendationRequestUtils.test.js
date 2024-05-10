@@ -43,7 +43,7 @@ describe("recommendationRequestUtils", () => {
 
             // assert
             expect(result).toEqual({
-                url: "/api/ucsbdates",
+                url: "/api/ucsbrecommendationrequest",
                 method: "DELETE",
                 params: { id: 17 }
             });
