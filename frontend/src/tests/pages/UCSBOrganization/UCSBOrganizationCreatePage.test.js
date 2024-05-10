@@ -1,11 +1,10 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
@@ -29,7 +28,7 @@ jest.mock('react-router-dom', () => {
     };
 });
 
-describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
+describe("UCSBOrganizationCreatePage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
 
@@ -46,65 +45,72 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <UCSBDiningCommonsMenuItemCreatePage />
+                    <UCSBOrganizationCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
     });
 
-    test("on submit, makes request to backend, and redirects to /ucsbdiningcommonsmenuitem", async () => {
+
+    test("on submit, makes request to backend, and redirects to /ucsborganization", async () => {
 
         const queryClient = new QueryClient();
-        const menuitem = {
-            id: 3,
-            name: "Chicken Caesar Salad",
-            diningCommonsCode: "Ortega",
-            station: "Entrees"
+        const restaurant = {
+            orgCode: "DSP",
+            orgTranslationShort: "Delta Sig",
+            orgTranslation: "Delta Sigma Pi",
+            inactive: "false"
         };
 
-        axiosMock.onPost("/api/ucsbdiningcommonsmenuitem/post").reply(202, menuitem);
+        axiosMock.onPost("/api/ucsborganizations/post").reply(202, restaurant);
 
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <UCSBDiningCommonsMenuItemCreatePage />
+                    <UCSBOrganizationCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         )
 
         await waitFor(() => {
-            expect(screen.getByLabelText("name")).toBeInTheDocument();
+            expect(screen.getByLabelText("orgCode")).toBeInTheDocument();
         });
 
-        const nameInput = screen.getByLabelText("name");
-        expect(nameInput).toBeInTheDocument();
+        const orgCodeInput = screen.getByLabelText("orgCode");
+        expect(orgCodeInput).toBeInTheDocument();
 
-        const diningCommonsCodeInput = screen.getByLabelText("diningCommonsCode");
-        expect(diningCommonsCodeInput).toBeInTheDocument();
+        const orgTranslationShortInput = screen.getByLabelText("orgTranslationShort");
+        expect(orgTranslationShortInput).toBeInTheDocument();
 
-        const stationInput = screen.getByLabelText("station");
-        expect(stationInput).toBeInTheDocument();
+        const orgTranslationInput = screen.getByLabelText("orgTranslation");
+        expect(orgTranslationInput).toBeInTheDocument();
+
+        const inactiveInput = screen.getByLabelText("inactive");
+        expect(inactiveInput).toBeInTheDocument();
 
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
-        fireEvent.change(nameInput, { target: { value: 'Chicken Caesar Salad' } })
-        fireEvent.change(diningCommonsCodeInput, { target: { value: 'Ortega' } })
-        fireEvent.change(stationInput, { target: { value: 'Entrees' } })
+        fireEvent.change(orgCodeInput, { target: { value: 'DSP' } })
+        fireEvent.change(orgTranslationShortInput, { target: { value: 'Delta Sig' } })
+        fireEvent.change(orgTranslationInput, { target: { value: 'Delta Sigma Pi' } })
+        fireEvent.change(inactiveInput, { target: { value: false } })
         fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
         expect(axiosMock.history.post[0].params).toEqual({
-            name: "Chicken Caesar Salad",
-            diningCommonsCode: "Ortega",
-            station: "Entrees"
+            orgCode: "DSP",
+            orgTranslationShort: "Delta Sig",
+            orgTranslation: "Delta Sigma Pi",
+            inactive: "false"
         });
 
         // assert - check that the toast was called with the expected message
-        expect(mockToast).toBeCalledWith("New menu item Created - id: 3 name: Chicken Caesar Salad");
-        expect(mockNavigate).toBeCalledWith({ "to": "/ucsbdiningcommonsmenuitem" });
+        expect(mockToast).toBeCalledWith("New organization Created - orgCode: DSP orgTranslationShort: Delta Sig\n    orgTranslation: Delta Sigma Pi inactive: false\n    ");
+        expect(mockNavigate).toBeCalledWith({ "to": "/ucsborganization" });
 
     });
 });
+
 
