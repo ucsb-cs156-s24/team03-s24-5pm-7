@@ -2,16 +2,16 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/ArticleUtils"
+import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/ArticleUtlis"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function ArticlesTable({ dates, currentUser }) {
+export default function ArticlesTable({ articles, currentUser }) {
 
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/articleTable/edit/${cell.row.values.id}`)
+        navigate(`/Articles/edit/${cell.row.values.id}`)
     }
 
     // Stryker disable all : hard to test for query caching
@@ -19,7 +19,7 @@ export default function ArticlesTable({ dates, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/articleTable/all"]
+        ["/api/Articles/all"]
     );
     // Stryker restore all 
 
@@ -49,8 +49,8 @@ export default function ArticlesTable({ dates, currentUser }) {
             accessor: 'email',
         },
         {
-            Header: 'dateAdded',
-            accessor: 'dataAdded',
+            Header: 'dateAdded', //dateAdded
+            accessor: 'dateAdded',
         }
     ];
 
@@ -60,7 +60,7 @@ export default function ArticlesTable({ dates, currentUser }) {
     } 
 
     return <OurTable
-        data={dates}
+        data={articles}
         columns={columns}
         testid={"ArticlesTable"}
     />;

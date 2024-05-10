@@ -5,38 +5,38 @@ import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/UCSBDates/UCSBDatesTable',
-    component: UCSBDatesTable
+    title: 'components/Articles/ArticlesTable',
+    component: ArticlesTable
 };
 
 const Template = (args) => {
     return (
-        <UCSBDatesTable {...args} />
+        <ArticlesTable {...args} />
     )
 };
 
 export const Empty = Template.bind({});
 
 Empty.args = {
-    dates: []
+    articles: []
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    dates: ucsbDatesFixtures.threeDates,
+    articles: articlesFixtures.threeArticles,
     currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    dates: ucsbDatesFixtures.threeDates,
+    articles: articlesFixtures.threeArticles,
     currentUser: currentUserFixtures.adminUser,
 }
 
 ThreeItemsAdminUser.parameters = {
     msw: [
-        rest.delete('/api/ucsbdates', (req, res, ctx) => {
+        rest.delete('/api/Articles', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
