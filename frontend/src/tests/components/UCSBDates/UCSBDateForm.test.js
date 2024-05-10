@@ -72,6 +72,7 @@ describe("UCSBDateForm tests", () => {
         await screen.findByText(/QuarterYYYYQ is required./);
         expect(screen.getByText(/Name is required./)).toBeInTheDocument();
         expect(screen.getByText(/LocalDateTime is required./)).toBeInTheDocument();
+        expect(screen.getByText(/LocalDateTime is required./)).toBeInTheDocument();
 
     });
 
