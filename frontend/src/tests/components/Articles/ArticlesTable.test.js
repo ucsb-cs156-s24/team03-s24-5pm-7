@@ -129,12 +129,12 @@ jest.mock('react-router-dom', () => ({
     });
   
     test("Edit button navigates to the edit page", async () => {
-      // arrange
+
       const currentUser = currentUserFixtures.adminUser;
 
       const testId = "ArticlesTable";
 
-      // act - render the component
+
       render(
         <QueryClientProvider client={queryClient}>
           <MemoryRouter>
@@ -143,18 +143,47 @@ jest.mock('react-router-dom', () => ({
         </QueryClientProvider>
       );
   
-      // assert - check that the expected content is rendered
+      
         expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent("Using testing-playground with React Testing Library");
   
       const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
       expect(editButton).toBeInTheDocument();
   
-      // act - click the edit button
+
       fireEvent.click(editButton);
   
-      // assert - check that the navigate function was called with the expected path
+
       await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/Articles/edit/1'));
   
     });
+
+    test("Delete button navigates to the delete page", async () => {
+    
+      const currentUser = currentUserFixtures.adminUser;
+
+      const testId = "ArticlesTable";
+
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          </MemoryRouter>
+        </QueryClientProvider>
+      );
+
+      // assert - check that the expected content is rendered
+      expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(screen.getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent("Using testing-playground with React Testing Library");
+  
+      const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+      expect(deleteButton).toBeInTheDocument();
+  
+      
+      fireEvent.click(deleteButton);
+      
+    });
+
+  
   });
