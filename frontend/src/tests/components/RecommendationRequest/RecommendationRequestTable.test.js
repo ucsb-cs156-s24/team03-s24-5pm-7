@@ -101,14 +101,15 @@ describe("RecommendationRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestTable RecommendationRequests={recommendationRequestFixtures.oneRecommendationRequest} currentUser={currentUser} />
+          <RecommendationRequestTable RecommendationRequests={recommendationRequestFixtures.threeRecommendationRequest} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
-    expect(await screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("adilahmed@ucsb.edu");
+    expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -117,7 +118,7 @@ describe("RecommendationRequestTable tests", () => {
     fireEvent.click(editButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsbrecommendationrequest/edit/1'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsbRecommendationRequest/edit/2'));
 
   });
 
