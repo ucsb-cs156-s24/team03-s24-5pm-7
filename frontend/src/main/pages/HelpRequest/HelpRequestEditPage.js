@@ -23,7 +23,7 @@ export default function HelpRequestEditPage({storybook=false}) {
 
 
   const objectToAxiosPutParams = (helpRequest) => ({
-    url: "/api/helpRequest",
+    url: "/api/helprequest",
     method: "PUT",
     params: {
       id: helpRequest.id,
