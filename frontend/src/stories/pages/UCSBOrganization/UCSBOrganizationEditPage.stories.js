@@ -1,17 +1,17 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
+import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 import { rest } from "msw";
 
-import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
 export default {
-    title: 'pages/UCSBDates/UCSBDatesEditPage',
-    component: UCSBDatesEditPage
+    title: 'pages/UCSBOrganization/UCSBOrganizationEditPage',
+    component: UCSBOrganizationEditPage
 };
 
-const Template = () => <UCSBDatesEditPage storybook={true}/>;
+const Template = () => <UCSBOrganizationEditPage storybook={true}/>;
 
 export const Default = Template.bind({});
 Default.parameters = {
@@ -22,10 +22,10 @@ Default.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsbdates', (_req, res, ctx) => {
-            return res(ctx.json(ucsbDatesFixtures.threeDates[0]));
+        rest.get('/api/ucsborganizations', (_req, res, ctx) => {
+            return res(ctx.json(ucsbOrganizationFixtures.threeOrgs[0]));
         }),
-        rest.put('/api/ucsbdates', async (req, res, ctx) => {
+        rest.put('/api/ucsborganizations', async (req, res, ctx) => {
             var reqBody = await req.text();
             window.alert("PUT: " + req.url + " and body: " + reqBody);
             return res(ctx.status(200),ctx.json({}));
