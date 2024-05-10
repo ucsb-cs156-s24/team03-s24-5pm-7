@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderEditPage from "main/pages/Articles/ArticlesEditPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
