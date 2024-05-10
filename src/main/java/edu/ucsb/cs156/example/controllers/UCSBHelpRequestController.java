@@ -65,7 +65,7 @@ public class UCSBHelpRequestController extends ApiController {
 
         UCSBHelpRequest ucsbHelpRequest = new UCSBHelpRequest();
         ucsbHelpRequest.setRequesterEmail(requesterEmail);
-        ucsbHelpRequest.setTeamID(teamID);
+        ucsbHelpRequest.setteamID(teamID);
         ucsbHelpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
         ucsbHelpRequest.setRequestTime(requestTime);
         ucsbHelpRequest.setExplanation(explanation);
@@ -110,7 +110,7 @@ public class UCSBHelpRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(UCSBHelpRequest.class, id));
 
         ucsbHelpRequest.setRequesterEmail(incoming.getRequesterEmail());
-        ucsbHelpRequest.setTeamID(incoming.getTeamID());
+        ucsbHelpRequest.setteamID(incoming.getteamID());
         ucsbHelpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
         ucsbHelpRequest.setRequestTime(incoming.getRequestTime());
         ucsbHelpRequest.setExplanation(incoming.getExplanation());
