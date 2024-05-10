@@ -131,9 +131,7 @@ jest.mock('react-router-dom', () => ({
     test("Edit button navigates to the edit page", async () => {
       // arrange
       const currentUser = currentUserFixtures.adminUser;
-        
-      const expectedHeaders = ["id", "Title", "URL", "Explanation", "Email", "dateAdded"];
-      const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
+
       const testId = "ArticlesTable";
 
       // act - render the component
