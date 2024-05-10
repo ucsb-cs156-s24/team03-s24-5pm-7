@@ -18,7 +18,7 @@ describe("HelpRequestForm tests", () => {
       </Router>
     );
     await screen.findByText(/requesterEmail/);
-    await screen.findByText(/teamID/);
+    await screen.findByText(/teamId/);
     await screen.findByText(/tableOrBreakoutRoom/);
     await screen.findByText(/explanation/);
     await screen.findByText(/solved/);
@@ -70,7 +70,7 @@ describe("HelpRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/requesterEmail is required./);
-    expect(screen.getByText(/teamID is required./)).toBeInTheDocument();
+    expect(screen.getByText(/teamId is required./)).toBeInTheDocument();
     expect(screen.getByText(/tableOrBreakoutRoom is required./)).toBeInTheDocument();
     expect(screen.getByText(/requestTime is required./)).toBeInTheDocument();
     expect(screen.getByText(/explanation is required./)).toBeInTheDocument();
@@ -91,7 +91,7 @@ describe("HelpRequestForm tests", () => {
     const requesterEmailField = screen.getByTestId(
       "HelpRequestForm-requesterEmail"
     );
-    const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
+    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
     const tableOrBreakoutRoomField = screen.getByTestId(
       "HelpRequestForm-tableOrBreakoutRoom"
     );
@@ -103,7 +103,7 @@ describe("HelpRequestForm tests", () => {
     fireEvent.change(requesterEmailField, {
       target: { value: "requesterEmail" },
     });
-    fireEvent.change(teamIDField, { target: { value: "teamID" } });
+    fireEvent.change(teamIdField, { target: { value: "teamId" } });
     fireEvent.change(tableOrBreakoutRoomField, {
       target: { value: "tableOrBreakoutRoom" },
     });
@@ -120,7 +120,7 @@ describe("HelpRequestForm tests", () => {
     expect(
       screen.queryByText(/requesterEmail is required./)
     ).not.toBeInTheDocument();
-    expect(screen.queryByText(/teamID is required./)).not.toBeInTheDocument();
+    expect(screen.queryByText(/teamId is required./)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/tableOrBreakoutRoom is required./)
     ).not.toBeInTheDocument();

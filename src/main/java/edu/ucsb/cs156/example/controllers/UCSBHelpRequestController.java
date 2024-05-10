@@ -51,7 +51,7 @@ public class UCSBHelpRequestController extends ApiController {
     @PostMapping("/post")
     public UCSBHelpRequest postUCSBHelpRequest(
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
-            @Parameter(name="teamID") @RequestParam String teamID,
+            @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
             @Parameter(name="requestTime") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
@@ -65,7 +65,7 @@ public class UCSBHelpRequestController extends ApiController {
 
         UCSBHelpRequest ucsbHelpRequest = new UCSBHelpRequest();
         ucsbHelpRequest.setRequesterEmail(requesterEmail);
-        ucsbHelpRequest.setTeamID(teamID);
+        ucsbHelpRequest.setteamId(teamId);
         ucsbHelpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
         ucsbHelpRequest.setRequestTime(requestTime);
         ucsbHelpRequest.setExplanation(explanation);
@@ -110,7 +110,7 @@ public class UCSBHelpRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(UCSBHelpRequest.class, id));
 
         ucsbHelpRequest.setRequesterEmail(incoming.getRequesterEmail());
-        ucsbHelpRequest.setTeamID(incoming.getTeamID());
+        ucsbHelpRequest.setteamId(incoming.getteamId());
         ucsbHelpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
         ucsbHelpRequest.setRequestTime(incoming.getRequestTime());
         ucsbHelpRequest.setExplanation(incoming.getExplanation());
