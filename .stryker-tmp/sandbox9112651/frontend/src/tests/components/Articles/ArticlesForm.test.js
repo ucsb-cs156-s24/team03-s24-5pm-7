@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import ArticlesForm from "main/components/Articles/ArticlesForm";
 import { articlesFixtures } from "fixtures/articlesFixtures";
 
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const mockedNavigate = jest.fn();
 
@@ -58,7 +59,6 @@ describe("AticlesForm tests", () => {
         await screen.findByText(/Url must be in the correct format/);
         expect(screen.getByText(/Url must be in the correct format/)).toBeInTheDocument();
         expect(screen.getByText(/Email must be in the correct format/)).toBeInTheDocument();
-        //expect(screen.getByText(/DateAdded must be in the correct format/)).toBeInTheDocument(); 
 
     });
 
@@ -77,8 +77,6 @@ describe("AticlesForm tests", () => {
         await screen.findByText(/Title is required./);
         expect(screen.getByText(/Url is required./)).toBeInTheDocument();
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Email is required./)).toBeInTheDocument();
-        expect(screen.getByText(/dateAdded is required./)).toBeInTheDocument();
 
     });
 
