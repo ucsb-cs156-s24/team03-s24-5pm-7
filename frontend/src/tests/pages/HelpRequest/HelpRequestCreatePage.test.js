@@ -77,13 +77,13 @@ describe("HelpRequestCreatePage tests", () => {
             expect(screen.getByTestId("HelpRequestForm-requesterEmail")).toBeInTheDocument();
         });
 
-        const requesterEmailField = screen.getByTestId("UCSBDateForm-requesterEmail");
-        const teamIdField = screen.getByTestId("UCSBDateForm-teamId");
-        const tableOrBreakoutRoomField = screen.getByTestId("UCSBDateForm-tableOrBreakoutRoomField");
-        const requestTimeField = screen.getByTestId("UCSBDateForm-requestTime");
-        const explanationField = screen.getByTestId("UCSBDateForm-explanation");
-        const solvedField = screen.getByTestId("UCSBDateForm-solved");
-        const submitButton = screen.getByTestId("UCSBDateForm-submit");
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoomField");
+        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+        const solvedField = screen.getByTestId("HelpRequestForm-solved");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
         fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } });
         fireEvent.change(teamIdField, { target: { value: '15' } });
