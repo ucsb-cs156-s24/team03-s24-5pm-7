@@ -23,7 +23,7 @@ Default.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/ucsbrecommendationrequest', (_req, res, ctx) => {
-            return res(ctx.json(recommendationRequestFixtures.threeRequests[0]));
+            return res(ctx.json(recommendationRequestFixtures.threeRecommendationRequest[0]));
         }),
         rest.put('/api/ucsbrecommendationrequest', async (req, res, ctx) => {
             var reqBody = await req.text();

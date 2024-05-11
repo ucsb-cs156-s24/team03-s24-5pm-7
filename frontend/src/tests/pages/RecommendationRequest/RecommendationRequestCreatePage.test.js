@@ -109,7 +109,7 @@ describe("RecommendationRequestCreatePage tests", () => {
             });
 
         expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 1 requesterEmail: adil@ucsb.edu");
-        expect(mockNavigate).toBeCalledWith({ "to": "/RecommendationRequest" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
     });
 
 
