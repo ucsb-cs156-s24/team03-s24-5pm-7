@@ -84,8 +84,27 @@ describe("MenuItemReviewIndexPage tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
         expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
-        // assert that the Create button is not present when user isn't an admin
-        expect(screen.queryByText(/Create MenuItemReview/)).not.toBeInTheDocument();
+        const createRestaurantButton = screen.queryByText("Create Restaurant");
+        expect(createRestaurantButton).not.toBeInTheDocument();
+
+        const itemId = screen.getByText("29");
+        expect(itemId).toBeInTheDocument();
+
+        const reviewerEmail = screen.getByText("koraykondakci@ucsb.edu");
+        expect(reviewerEmail).toBeInTheDocument();
+
+        const stars = screen.getByText("5");
+        expect(stars).toBeInTheDocument();
+
+        const dateReviewed = screen.getByText("2023-04-20T10:00:00");
+        expect(dateReviewed).toBeInTheDocument();
+
+        const comments = screen.getByText("best veggie pizza ever");
+        expect(comments).toBeInTheDocument();
+
+        // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
+        expect(screen.queryByTestId("RestaurantTable-cell-row-0-col-Delete-button")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("RestaurantTable-cell-row-0-col-Edit-button")).not.toBeInTheDocument();
 
     });
 
@@ -116,7 +135,7 @@ describe("MenuItemReviewIndexPage tests", () => {
     test("what happens when you click delete, admin", async () => {
         // arrange
         setupAdminUser();
-        const queryClient = new QueryClient();
+        
         axiosMock.onGet("/api/menuitemreviews/all").reply(200, menuItemReviewFixtures.threeMenuItemReviews);
         axiosMock.onDelete("/api/menuitemreviews").reply(200, "MenuItemReview with id 1 was deleted");
 
@@ -142,6 +161,11 @@ describe("MenuItemReviewIndexPage tests", () => {
 
         // assert
         await waitFor(() => { expect(mockToast).toBeCalledWith("MenuItemReview with id 1 was deleted") });
+
+        await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
+        expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreviews");
+        expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreviews");
+        expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
 
     });
     

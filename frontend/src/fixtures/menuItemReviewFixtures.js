@@ -25,18 +25,18 @@ const menuItemReviewFixtures = {
         {
             "id": 2,
             "itemId": 29,
-            "reviewerEmail": "cgaucho@ucsb.edu",
+            "reviewerEmail": "koraykondakci@ucsb.edu",
             "stars": "5",
-            "dateReviewed": "2022-04-20T10:00:00",
+            "dateReviewed": "2023-04-20T10:00:00",
             "comments": "best veggie pizza ever"
         },
 
         {
             "id": 3,
-            "itemId": 29,
+            "itemId": 36,
             "reviewerEmail": "ldelplaya@ucsb.edu",
             "stars": "0",
-            "dateReviewed": "2022-04-21T10:00:00",
+            "dateReviewed": "2024-04-21T10:00:00",
             "comments": "not tryna get food poisoning, but if I were this would do it"     
         },
         
