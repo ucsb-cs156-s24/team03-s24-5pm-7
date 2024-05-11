@@ -8,7 +8,7 @@ import { rest } from "msw";
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
 
 export default {
-    title: 'pages/Articles/ArticlesIndexPage',
+    title: 'pages/articles/ArticlesIndexPage',
     component: ArticlesIndexPage
 };
 
@@ -23,7 +23,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/Articles/all', (_req, res, ctx) => {
+        rest.get('/api/articles/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -39,7 +39,7 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/Articles/all', (_req, res, ctx) => {
+        rest.get('/api/articles/all', (_req, res, ctx) => {
             return res(ctx.json(articlesFixtures.threeArticles));
         }),
     ],
@@ -55,10 +55,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/Articles/all', (_req, res, ctx) => {
+        rest.get('/api/articles/all', (_req, res, ctx) => {
             return res(ctx.json(articlesFixtures.threeArticles));
         }),
-        rest.delete('/api/Articles', (req, res, ctx) => {
+        rest.delete('/api/articles', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),

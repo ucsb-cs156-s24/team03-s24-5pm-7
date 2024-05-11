@@ -17,9 +17,7 @@ export default function ArticlesIndexPage() {
                 variant="primary"
                 href="/articles/create"
                 style={{ float: "right" }}
-            >
-                Create Articles 
-            </Button>
+            >Create Articles</Button>
         )
     } 
   }
@@ -27,8 +25,8 @@ export default function ArticlesIndexPage() {
   const { articles: articles, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/Articles/all"],
-      { method: "GET", url: "/api/Articles/all" },
+      ["/api/articles/all"],
+      { method: "GET", url: "/api/articles/all" },
       []
     );
 

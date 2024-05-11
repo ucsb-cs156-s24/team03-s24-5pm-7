@@ -44,7 +44,7 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/Articles/all").reply(200, []);
+        axiosMock.onGet("/api/articles/all").reply(200, []);
 
 
         // act
@@ -70,7 +70,7 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/Articles/all").reply(200, articlesFixtures.threeArticles);
+        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
         const testId = "ArticlesTable";
         // act
         render(
@@ -96,7 +96,7 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/Articles/all").timeout();
+        axiosMock.onGet("/api/articles/all").timeout();
         const restoreConsole = mockConsole();
         const testId = "ArticlesTable";
         // act
@@ -112,7 +112,7 @@ describe("ArticlesIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/Articles/all");
+        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/articles/all");
         restoreConsole();
 
         expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
@@ -122,8 +122,8 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/Articles/all").reply(200, articlesFixtures.threeArticles);
-        axiosMock.onDelete("/api/Articles").reply(200, "Articles with id 1 was deleted");
+        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+        axiosMock.onDelete("/api/articles").reply(200, "Articles with id 1 was deleted");
         const testId = "ArticlesTable";
         // act
         render(

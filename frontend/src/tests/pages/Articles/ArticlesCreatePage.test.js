@@ -67,7 +67,7 @@ describe("ArticlesCreatePage tests", () => {
             dateAdded: "2022-07-17T00:00"
         };
 
-        axiosMock.onPost("/api/Articles/post").reply( 202, articles );
+        axiosMock.onPost("/api/articles/post").reply( 202, articles );
 
         render(
             <QueryClientProvider client={queryClient}>
