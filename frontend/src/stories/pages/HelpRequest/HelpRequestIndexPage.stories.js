@@ -1,17 +1,18 @@
+
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import { rest } from "msw";
 
-import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
 
 export default {
-    title: 'pages/UCSBOrganization/UCSBOrganizationIndexPage',
-    component: UCSBOrganizationIndexPage
+    title: 'pages/HelpRequest/HelpRequestIndexPage',
+    component: HelpRequestIndexPage
 };
 
-const Template = () => <UCSBOrganizationIndexPage storybook={true}/>;
+const Template = () => <HelpRequestIndexPage storybook={true}/>;
 
 export const Empty = Template.bind({});
 Empty.parameters = {
@@ -22,7 +23,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
+        rest.get('/api/helprequest/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -38,8 +39,8 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbOrganizationFixtures.threeOrgs));
+        rest.get('/api/helpRequest/all', (_req, res, ctx) => {
+            return res(ctx.json(helpRequestFixtures.threeHelpRequests));
         }),
     ],
 }
@@ -54,10 +55,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbOrganizationFixtures.threeOrgs));
+        rest.get('/api/helprequest/all', (_req, res, ctx) => {
+            return res(ctx.json(helpRequestFixtures.threeHelpRequests));
         }),
-        rest.delete('/api/ucsborganizations', (req, res, ctx) => {
+        rest.delete('/api/helprequest', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
