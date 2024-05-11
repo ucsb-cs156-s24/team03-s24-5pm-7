@@ -64,6 +64,20 @@ describe("MenuItemReviewIndexPage tests", () => {
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
+    test("does not render Create Button for non-admin user", async () => {
+        setupUserOnly();  
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <MenuItemReviewIndexPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        await waitFor(() => {
+            expect(screen.queryByText(/Create MenuItemReview/)).not.toBeInTheDocument();
+        });
+    });
+
     test("renders three menu item reviews correctly for regular user", async () => {
         
         // arrange
