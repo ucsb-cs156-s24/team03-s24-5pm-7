@@ -31,6 +31,7 @@ describe("ArticlesIndexPage tests", () => {
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+
     };
 
     const setupAdminUser = () => {
@@ -38,6 +39,7 @@ describe("ArticlesIndexPage tests", () => {
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+
     };
 
     test("Renders with Create Button for admin user", async () => {
@@ -45,7 +47,6 @@ describe("ArticlesIndexPage tests", () => {
         setupAdminUser();
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/articles/all").reply(200, []);
-
 
         // act
         render(
@@ -135,6 +136,7 @@ describe("ArticlesIndexPage tests", () => {
         );
 
         // assert
+        
         await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
         expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");

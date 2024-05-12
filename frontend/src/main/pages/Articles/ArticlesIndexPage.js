@@ -22,13 +22,14 @@ export default function ArticlesIndexPage() {
     } 
   }
   
-  const { articles: articles, error: _error, status: _status } =
+  const { articles: articles = [], error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
       ["/api/articles/all"],
       { method: "GET", url: "/api/articles/all" },
       []
     );
+
 
   return (
     <BasicLayout>
