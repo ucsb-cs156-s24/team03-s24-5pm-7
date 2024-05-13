@@ -26,12 +26,13 @@ describe("ArticlesIndexPage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
 
+    const testId = "ArticlesTable";
+
     const setupUserOnly = () => {
         axiosMock.reset();
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-
     };
 
     const setupAdminUser = () => {
@@ -39,7 +40,6 @@ describe("ArticlesIndexPage tests", () => {
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-
     };
 
     test("Renders with Create Button for admin user", async () => {
@@ -59,20 +59,20 @@ describe("ArticlesIndexPage tests", () => {
 
         // assert
         await waitFor( ()=>{
-            expect(screen.getByText(/Create Articles/)).toBeInTheDocument();
+            expect(screen.getByText(/Create Article/)).toBeInTheDocument();
         });
-        const button = screen.getByText(/Create Articles/);
+        const button = screen.getByText(/Create Article/);
         expect(button).toHaveAttribute("href", "/articles/create");
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
     test("renders three dates correctly for regular user", async () => {
-        
+
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
-        const testId = "ArticlesTable";
+
         // act
         render(
             <QueryClientProvider client={queryClient}>
@@ -88,7 +88,7 @@ describe("ArticlesIndexPage tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
         // assert that the Create button is not present when user isn't an admin
-        expect(screen.queryByText(/Create Articles/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Create Article/)).not.toBeInTheDocument();
 
     });
 
@@ -99,9 +99,9 @@ describe("ArticlesIndexPage tests", () => {
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/articles/all").timeout();
         const restoreConsole = mockConsole();
-        const testId = "ArticlesTable";
-        // act
-        render(
+
+         // act
+         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
                     <ArticlesIndexPage />
@@ -109,7 +109,6 @@ describe("ArticlesIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        // assert
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
@@ -124,8 +123,8 @@ describe("ArticlesIndexPage tests", () => {
         setupAdminUser();
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
-        axiosMock.onDelete("/api/articles").reply(200, "Articles with id 1 was deleted");
-        const testId = "ArticlesTable";
+        axiosMock.onDelete("/api/articles").reply(200, "Article with id 1 was deleted");
+
         // act
         render(
             <QueryClientProvider client={queryClient}>
@@ -136,7 +135,6 @@ describe("ArticlesIndexPage tests", () => {
         );
 
         // assert
-        
         await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
         expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
@@ -153,5 +151,3 @@ describe("ArticlesIndexPage tests", () => {
     });
 
 });
-
-
