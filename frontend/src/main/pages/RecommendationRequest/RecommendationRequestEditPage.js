@@ -69,4 +69,3 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
             </div>
         </BasicLayout>
     )
-}
