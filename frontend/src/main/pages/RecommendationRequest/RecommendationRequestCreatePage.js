@@ -27,7 +27,7 @@ export default function RecommendationRequestCreatePage({storybook=false}) {
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/RecommendationRequest/all"] // mutation makes this key stale so that pages relying on it reload
+     ["/api/ucsbrecommendationrequest/all"] // mutation makes this key stale so that pages relying on it reload
      );
 
   const { isSuccess } = mutation
@@ -37,7 +37,7 @@ export default function RecommendationRequestCreatePage({storybook=false}) {
   }
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/RecommendationRequest" />
+    return <Navigate to="/recommendationrequest" />
   }
 
   return (
