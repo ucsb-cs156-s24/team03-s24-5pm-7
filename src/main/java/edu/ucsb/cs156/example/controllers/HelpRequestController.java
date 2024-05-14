@@ -51,7 +51,7 @@ public class HelpRequestController extends ApiController {
     @PostMapping("/post")
     public HelpRequest postHelpRequest(
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
-            @Parameter(name="teamID") @RequestParam String teamID,
+            @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
             @Parameter(name="requestTime") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
@@ -65,7 +65,7 @@ public class HelpRequestController extends ApiController {
 
         HelpRequest HelpRequest = new HelpRequest();
         HelpRequest.setRequesterEmail(requesterEmail);
-        HelpRequest.setTeamID(teamID);
+        HelpRequest.setTeamId(teamId);
         HelpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
         HelpRequest.setRequestTime(requestTime);
         HelpRequest.setExplanation(explanation);
@@ -110,7 +110,7 @@ public class HelpRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
         HelpRequest.setRequesterEmail(incoming.getRequesterEmail());
-        HelpRequest.setTeamID(incoming.getTeamID());
+        HelpRequest.setTeamId(incoming.getTeamId());
         HelpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
         HelpRequest.setRequestTime(incoming.getRequestTime());
         HelpRequest.setExplanation(incoming.getExplanation());
