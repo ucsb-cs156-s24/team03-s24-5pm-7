@@ -22,9 +22,11 @@ jest.mock('react-toastify', () => {
     };
 });
 
+
 describe("ArticlesIndexPage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
+
 
     const testId = "ArticlesTable";
 

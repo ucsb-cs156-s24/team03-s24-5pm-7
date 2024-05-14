@@ -39,12 +39,14 @@ export default function ArticlesCreatePage({storybook=false}) {
     return <Navigate to="/articles" /> //Aricles
   }
 
+
   return (
     <BasicLayout>
       <div className="pt-2">
         <h1>Create New Article</h1>
 
         <ArticlesForm submitAction={onSubmit} />
+
 
       </div>
     </BasicLayout>
