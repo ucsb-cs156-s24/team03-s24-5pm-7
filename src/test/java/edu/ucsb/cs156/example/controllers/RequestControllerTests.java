@@ -68,7 +68,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequest1 = HelpRequest.builder()
                                 .requesterEmail("gracefeng@ucsb.edu")
-                                .teamID("15")
+                                .teamId("15")
                                 .tableOrBreakoutRoom("15")
                                 .requestTime(requestTime1)
                                 .explanation("Trouble with team02")
@@ -79,7 +79,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequest2 = HelpRequest.builder()
                                 .requesterEmail("kittygrace101@gmail.com")
-                                .teamID("7")
+                                .teamId("7")
                                 .tableOrBreakoutRoom("7")
                                 .requestTime(requestTime2)
                                 .explanation("Malding")
@@ -127,7 +127,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequest1 = HelpRequest.builder()
                                 .requesterEmail("gracefeng@ucsb.edu")
-                                .teamID("15")
+                                .teamId("15")
                                 .tableOrBreakoutRoom("15")
                                 .requestTime(requestTime1)
                                 .explanation("Help")
@@ -138,7 +138,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/helprequest/post?requesterEmail=gracefeng@ucsb.edu&teamID=15&tableOrBreakoutRoom=15&requestTime=2022-01-03T00:00:00&explanation=Help&solved=true")
+                                post("/api/helprequest/post?requesterEmail=gracefeng@ucsb.edu&teamId=15&tableOrBreakoutRoom=15&requestTime=2022-01-03T00:00:00&explanation=Help&solved=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -166,7 +166,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequest1 = HelpRequest.builder()
                                 .requesterEmail("gracefeng@ucsb.edu")
-                                .teamID("15")
+                                .teamId("15")
                                 .tableOrBreakoutRoom("15")
                                 .requestTime(requestTime1)
                                 .explanation("Help")
@@ -218,7 +218,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequest1 = HelpRequest.builder()
                                 .requesterEmail("gracefeng@ucsb.edu")
-                                .teamID("15")
+                                .teamId("15")
                                 .tableOrBreakoutRoom("15")
                                 .requestTime(requestTime1)
                                 .explanation("Help")
@@ -273,7 +273,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequestOrig = HelpRequest.builder()
                                 .requesterEmail("gracefeng@ucsb.edu")
-                                .teamID("15")
+                                .teamId("15")
                                 .tableOrBreakoutRoom("15")
                                 .requestTime(requestTime1)
                                 .explanation("Help")
@@ -282,7 +282,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest HelpRequestEdited = HelpRequest.builder()
                                 .requesterEmail("kittygrace101@gmail.com")
-                                .teamID("7")
+                                .teamId("7")
                                 .tableOrBreakoutRoom("7")
                                 .requestTime(requestTime2)
                                 .explanation("Malding")
@@ -319,7 +319,7 @@ public class RequestControllerTests extends ControllerTestCase {
 
                 HelpRequest ucsbEditedHelpRequest = HelpRequest.builder()
                                 .requesterEmail("kittygrace101@gmail.com")
-                                .teamID("7")
+                                .teamId("7")
                                 .tableOrBreakoutRoom("7")
                                 .requestTime(requestTime1)
                                 .explanation("Malding")
