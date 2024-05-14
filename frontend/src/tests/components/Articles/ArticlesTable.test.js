@@ -154,7 +154,7 @@ jest.mock('react-router-dom', () => ({
       fireEvent.click(editButton);
   
 
-      await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/Articles/edit/1'));
+      await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/articles/edit/1'));
   
     });
 
