@@ -1,8 +1,8 @@
 package edu.ucsb.cs156.example.controllers;
 
-import edu.ucsb.cs156.example.entities.UCSBHelpRequest;
+import edu.ucsb.cs156.example.entities.HelpRequest;
 import edu.ucsb.cs156.example.errors.EntityNotFoundException;
-import edu.ucsb.cs156.example.repositories.UCSBHelpRequestRepository;
+import edu.ucsb.cs156.example.repositories.HelpRequestRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,21 +27,21 @@ import javax.validation.Valid;
 
 import java.time.LocalDateTime;
 
-@Tag(name = "UCSBHelpRequest")
-@RequestMapping("/api/ucsbhelprequest")
+@Tag(name = "HelpRequest")
+@RequestMapping("/api/helprequest")
 @RestController
 @Slf4j
-public class UCSBHelpRequestController extends ApiController {
+public class HelpRequestController extends ApiController {
 
     @Autowired
-    UCSBHelpRequestRepository ucsbHelpRequestRepository;
+    HelpRequestRepository HelpRequestRepository;
 
     // Get all records in the table and return as a JSON array
     @Operation(summary= "List all ucsb help requests")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<UCSBHelpRequest> allUCSBDates() {
-        Iterable<UCSBHelpRequest> helpRequests = ucsbHelpRequestRepository.findAll();
+    public Iterable<HelpRequest> allUCSBDates() {
+        Iterable<HelpRequest> helpRequests = HelpRequestRepository.findAll();
         return helpRequests;
     }
 
@@ -49,7 +49,7 @@ public class UCSBHelpRequestController extends ApiController {
     @Operation(summary= "Create a new help request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public UCSBHelpRequest postUCSBHelpRequest(
+    public HelpRequest postHelpRequest(
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamID") @RequestParam String teamID,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
@@ -63,61 +63,61 @@ public class UCSBHelpRequestController extends ApiController {
 
         log.info("localDateTime={}", requestTime);
 
-        UCSBHelpRequest ucsbHelpRequest = new UCSBHelpRequest();
-        ucsbHelpRequest.setRequesterEmail(requesterEmail);
-        ucsbHelpRequest.setTeamID(teamID);
-        ucsbHelpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-        ucsbHelpRequest.setRequestTime(requestTime);
-        ucsbHelpRequest.setExplanation(explanation);
-        ucsbHelpRequest.setSolved(solved);
+        HelpRequest HelpRequest = new HelpRequest();
+        HelpRequest.setRequesterEmail(requesterEmail);
+        HelpRequest.setTeamID(teamID);
+        HelpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
+        HelpRequest.setRequestTime(requestTime);
+        HelpRequest.setExplanation(explanation);
+        HelpRequest.setSolved(solved);
 
-        UCSBHelpRequest savedUcsbHelpRequest = ucsbHelpRequestRepository.save(ucsbHelpRequest);
+        HelpRequest savedHelpRequest = HelpRequestRepository.save(HelpRequest);
 
-        return savedUcsbHelpRequest;
+        return savedHelpRequest;
     }
 
     @Operation(summary= "Get a single help request")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
-    public UCSBHelpRequest getById(
+    public HelpRequest getById(
             @Parameter(name="id") @RequestParam Long id) {
-        UCSBHelpRequest ucsbHelpRequest = ucsbHelpRequestRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBHelpRequest.class, id));
+        HelpRequest HelpRequest = HelpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        return ucsbHelpRequest;
+        return HelpRequest;
     }
 
-    @Operation(summary= "Delete a UCSBHelpRequest")
+    @Operation(summary= "Delete a HelpRequest")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
-    public Object deleteUCSBHelpRequest(
+    public Object deleteHelpRequest(
             @Parameter(name="id") @RequestParam Long id) {
-        UCSBHelpRequest ucsbHelpRequest = ucsbHelpRequestRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBHelpRequest.class, id));
+        HelpRequest HelpRequest = HelpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        ucsbHelpRequestRepository.delete(ucsbHelpRequest);
-        return genericMessage("UCSBHelpRequest with id %s deleted".formatted(id));
+        HelpRequestRepository.delete(HelpRequest);
+        return genericMessage("HelpRequest with id %s deleted".formatted(id));
     }
 
     @Operation(summary= "Update a single help request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public UCSBHelpRequest updateUCSBHelpRequest(
+    public HelpRequest updateHelpRequest(
             @Parameter(name="id") @RequestParam Long id,
-            @RequestBody @Valid UCSBHelpRequest incoming) {
+            @RequestBody @Valid HelpRequest incoming) {
 
-        UCSBHelpRequest ucsbHelpRequest = ucsbHelpRequestRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBHelpRequest.class, id));
+        HelpRequest HelpRequest = HelpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        ucsbHelpRequest.setRequesterEmail(incoming.getRequesterEmail());
-        ucsbHelpRequest.setTeamID(incoming.getTeamID());
-        ucsbHelpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
-        ucsbHelpRequest.setRequestTime(incoming.getRequestTime());
-        ucsbHelpRequest.setExplanation(incoming.getExplanation());
-        ucsbHelpRequest.setSolved(incoming.getSolved());
+        HelpRequest.setRequesterEmail(incoming.getRequesterEmail());
+        HelpRequest.setTeamID(incoming.getTeamID());
+        HelpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
+        HelpRequest.setRequestTime(incoming.getRequestTime());
+        HelpRequest.setExplanation(incoming.getExplanation());
+        HelpRequest.setSolved(incoming.getSolved());
 
-        ucsbHelpRequestRepository.save(ucsbHelpRequest);
+        HelpRequestRepository.save(HelpRequest);
 
-        return ucsbHelpRequest;
+        return HelpRequest;
     }
 }
