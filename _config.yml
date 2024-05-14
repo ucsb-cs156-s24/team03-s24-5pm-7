@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/team03-s24-5pm-7
 owner: ucsb-cs156-s24
 repo_name: team03-s24-5pm-7
-pull_requests: [{"author":{"id":"U_kgDOBtKOXg","is_bot":false,"login":"gracefeng05","name":""},"headRefName":"Grace-HelpRequest-FixBackend","number":129,"title":"Fix Help Request Backend","url":"https://github.com/ucsb-cs156-s24/team03-s24-5pm-7/pull/129"},{"author":{"id":"U_kgDOBnFUwg","is_bot":false,"login":"zhenbi93","name":""},"headRefName":"June-Article-Edit","number":128,"title":"After merge, this is a mistake","url":"https://github.com/ucsb-cs156-s24/team03-s24-5pm-7/pull/128"}]
+pull_requests: [{"author":{"id":"U_kgDOBnFUwg","is_bot":false,"login":"zhenbi93","name":""},"headRefName":"June-Article-Edit","number":128,"title":"After merge, this is a mistake","url":"https://github.com/ucsb-cs156-s24/team03-s24-5pm-7/pull/128"}]
