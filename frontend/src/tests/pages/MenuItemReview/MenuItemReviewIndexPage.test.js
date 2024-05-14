@@ -44,7 +44,7 @@ describe("MenuItemReviewIndexPage tests", () => {
     test("Renders with Create Button for admin user", async () => {
         // arrange
         setupAdminUser();
-        axiosMock.onGet("/api/menuitemreviews/all").reply(200, []);
+        axiosMock.onGet("/api/MenuItemReview/all").reply(200, []);
 
         // act
         render(
@@ -82,7 +82,7 @@ describe("MenuItemReviewIndexPage tests", () => {
         
         // arrange
         setupUserOnly();
-        axiosMock.onGet("/api/menuitemreviews/all").reply(200, menuItemReviewFixtures.threeMenuItemReviews);
+        axiosMock.onGet("/api/MenuItemReview/all").reply(200, menuItemReviewFixtures.threeMenuItemReviews);
 
         // act
         render(
@@ -125,7 +125,7 @@ describe("MenuItemReviewIndexPage tests", () => {
     test("renders empty table when backend unavailable, user only", async () => {
         // arrange
         setupUserOnly();
-        axiosMock.onGet("/api/menuitemreviews/all").timeout();
+        axiosMock.onGet("/api/MenuItemReview/all").timeout();
         const restoreConsole = mockConsole();
 
         // act
@@ -141,7 +141,7 @@ describe("MenuItemReviewIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/menuitemreviews/all");
+        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/MenuItemReview/all");
         restoreConsole();
 
     });
@@ -150,8 +150,8 @@ describe("MenuItemReviewIndexPage tests", () => {
         // arrange
         setupAdminUser();
         
-        axiosMock.onGet("/api/menuitemreviews/all").reply(200, menuItemReviewFixtures.threeMenuItemReviews);
-        axiosMock.onDelete("/api/menuitemreviews").reply(200, "MenuItemReview with id 1 was deleted");
+        axiosMock.onGet("/api/MenuItemReview/all").reply(200, menuItemReviewFixtures.threeMenuItemReviews);
+        axiosMock.onDelete("/api/MenuItemReview").reply(200, "MenuItemReview with id 1 was deleted");
 
         // act
         render(
@@ -177,8 +177,8 @@ describe("MenuItemReviewIndexPage tests", () => {
         await waitFor(() => { expect(mockToast).toBeCalledWith("MenuItemReview with id 1 was deleted") });
 
         await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
-        expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreviews");
-        expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreviews");
+        expect(axiosMock.history.delete[0].url).toBe("/api/MenuItemReview");
+        expect(axiosMock.history.delete[0].url).toBe("/api/MenuItemReview");
         expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
 
     });
