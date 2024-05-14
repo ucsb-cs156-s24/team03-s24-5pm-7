@@ -77,7 +77,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.onGet("/api/helprequest", { params: { id: 4 } }).reply(200, {
                 id: 4,
                 requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
+                teamID: "15",
                 tableOrBreakoutRoom: "7",
                 requestTime: "2022-03-14T15:00",
                 explanation: "Dokku deployment issues.",
@@ -86,7 +86,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.onPut('/api/helprequest').reply(200, {
                 id: 4,
                 requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
+                teamID: "15",
                 tableOrBreakoutRoom: "7",
                 requestTime: "2022-03-14T15:00",
                 explanation: "Dokku deployment issues.",
@@ -119,7 +119,7 @@ describe("HelpRequestEditPage tests", () => {
 
             const idField = screen.getByTestId("HelpRequestForm-id");
             const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
-            const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+            const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
             const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
             const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
             const explanationField = screen.getByTestId("HelpRequestForm-explanation");
@@ -128,7 +128,7 @@ describe("HelpRequestEditPage tests", () => {
 
             expect(idField).toHaveValue("4");
             expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu");
-            expect(teamIdField).toHaveValue("15");
+            expect(teamIDField).toHaveValue("15");
             expect(tableOrBreakoutRoomField).toHaveValue("7");
             expect(requestTimeField).toHaveValue("2022-03-14T15:00");
             expect(explanationField).toHaveValue("Dokku deployment issues.");
@@ -150,7 +150,7 @@ describe("HelpRequestEditPage tests", () => {
 
             const idField = screen.getByTestId("HelpRequestForm-id");
             const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
-            const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+            const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
             const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
             const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
             const explanationField = screen.getByTestId("HelpRequestForm-explanation");
@@ -159,7 +159,7 @@ describe("HelpRequestEditPage tests", () => {
 
             expect(idField).toHaveValue("4");
             expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu");
-            expect(teamIdField).toHaveValue("15");
+            expect(teamIDField).toHaveValue("15");
             expect(tableOrBreakoutRoomField).toHaveValue("7");
             expect(requestTimeField).toHaveValue("2022-03-14T15:00");
             expect(explanationField).toHaveValue("Dokku deployment issues.");
@@ -169,7 +169,7 @@ describe("HelpRequestEditPage tests", () => {
             expect(submitButton).toBeInTheDocument();
 
             fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } })
-            fireEvent.change(teamIdField, { target: { value: '15' } })
+            fireEvent.change(teamIDField, { target: { value: '15' } })
             fireEvent.change(tableOrBreakoutRoomField, { target: { value: "7" } })
             fireEvent.change(requestTimeField, { target: { value: "2022-03-14T15:00" } })
             fireEvent.change(explanationField, { target: { value: "Dokku deployment issues." } })
@@ -178,14 +178,14 @@ describe("HelpRequestEditPage tests", () => {
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("HelpRequest Updated - id: 4 teamId: 15");
+            expect(mockToast).toBeCalledWith("HelpRequest Updated - id: 4 teamID: 15");
             expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 4 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
+                teamID: "15",
                 tableOrBreakoutRoom: "7",
                 requestTime: "2022-03-14T15:00",
                 explanation: "Dokku deployment issues.",

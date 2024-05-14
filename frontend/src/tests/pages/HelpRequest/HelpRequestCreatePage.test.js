@@ -56,7 +56,7 @@ describe("HelpRequestCreatePage tests", () => {
         const helpRequest = {
             id: 4,
             requesterEmail: "gracefeng@ucsb.edu",
-            teamId: "15",
+            teamID: "15",
             tableOrBreakoutRoom: "7",
             requestTime: "2022-02-02T00:00",
             explanation: "Dokku deployment issues.",
@@ -78,7 +78,7 @@ describe("HelpRequestCreatePage tests", () => {
         });
 
         const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
-        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+        const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
         const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
         const explanationField = screen.getByTestId("HelpRequestForm-explanation");
@@ -86,7 +86,7 @@ describe("HelpRequestCreatePage tests", () => {
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
         fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } });
-        fireEvent.change(teamIdField, { target: { value: '15' } });
+        fireEvent.change(teamIDField, { target: { value: '15' } });
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: '7' } });
         fireEvent.change(requestTimeField, { target: { value: '2022-02-02T00:00' } });
         fireEvent.change(explanationField, { target: { value: 'Dokku deployment issues.' } });
@@ -101,14 +101,14 @@ describe("HelpRequestCreatePage tests", () => {
         expect(axiosMock.history.post[0].params).toEqual(
             {
             "requesterEmail": "gracefeng@ucsb.edu",
-            "teamId": "15",
+            "teamID": "15",
             "tableOrBreakoutRoom": "7",
             "requestTime": "2022-02-02T00:00",
             "explanation": "Dokku deployment issues.",
             "solved": "true"
         });
 
-        expect(mockToast).toBeCalledWith("New helpRequest Created - id: 4 teamId: 15");
+        expect(mockToast).toBeCalledWith("New helpRequest Created - id: 4 teamID: 15");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
     });
 

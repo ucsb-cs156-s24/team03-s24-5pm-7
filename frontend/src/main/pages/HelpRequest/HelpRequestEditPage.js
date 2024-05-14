@@ -30,7 +30,7 @@ export default function HelpRequestEditPage({storybook=false}) {
     },
     data: {
       requesterEmail: helpRequest.requesterEmail,
-      teamId: helpRequest.teamId,
+      teamID: helpRequest.teamID,
       tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
       requestTime: helpRequest.requestTime,
       explanation: helpRequest.explanation,
@@ -39,7 +39,7 @@ export default function HelpRequestEditPage({storybook=false}) {
   });
 
   const onSuccess = (helpRequest) => {
-    toast(`HelpRequest Updated - id: ${helpRequest.id} teamId: ${helpRequest.teamId}`);
+    toast(`HelpRequest Updated - id: ${helpRequest.id} teamID: ${helpRequest.teamID}`);
   }
 
   const mutation = useBackendMutation(

@@ -11,7 +11,7 @@ export default function HelpRequestCreatePage({storybook=false}) {
     method: "POST",
     params: {
       requesterEmail: helpRequest.requesterEmail,
-      teamId: helpRequest.teamId,
+      teamID: helpRequest.teamID,
       tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
       requestTime: helpRequest.requestTime,
       explanation: helpRequest.explanation,
@@ -20,7 +20,7 @@ export default function HelpRequestCreatePage({storybook=false}) {
   });
 
   const onSuccess = (helpRequest) => {
-    toast(`New helpRequest Created - id: ${helpRequest.id} teamId: ${helpRequest.teamId}`);
+    toast(`New helpRequest Created - id: ${helpRequest.id} teamID: ${helpRequest.teamID}`);
   }
 
   const mutation = useBackendMutation(
