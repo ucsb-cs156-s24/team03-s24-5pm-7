@@ -1,17 +1,17 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
+import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import { rest } from "msw";
 
-import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
 
 export default {
-    title: 'pages/UCSBOrganization/UCSBOrganizationIndexPage',
-    component: UCSBOrganizationIndexPage
+    title: 'pages/MenuItemReview/MenuItemReviewIndexPage',
+    component: MenuItemReviewIndexPage
 };
 
-const Template = () => <UCSBOrganizationIndexPage storybook={true}/>;
+const Template = () => <MenuItemReviewIndexPage storybook={true}/>;
 
 export const Empty = Template.bind({});
 Empty.parameters = {
@@ -22,7 +22,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
+        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -38,8 +38,8 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbOrganizationFixtures.threeOrgs));
+        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
+            return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
         }),
     ],
 }
@@ -54,10 +54,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsborganizations/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbOrganizationFixtures.threeOrgs));
+        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
+            return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
         }),
-        rest.delete('/api/ucsborganizations', (req, res, ctx) => {
+        rest.delete('/api/menuitemreviews', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
