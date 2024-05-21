@@ -18,7 +18,7 @@ import edu.ucsb.cs156.example.WebTestCase;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
     @Test
-    public void admin_user_can_create_edit_delete_menu_item() throws Exception {
+    public void admin_user_can_create_edit_delete_ucsbdiningcommonsmenuitem() throws Exception {
         setupUser(true);
 
         page.getByText("UCSBDiningCommonsMenuItem").click();
