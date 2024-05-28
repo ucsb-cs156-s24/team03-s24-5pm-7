@@ -100,7 +100,7 @@ public class ArticleIT {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/articles/post?title=A New Article: Explore Intergration Test&url=https.//aNewIntegrationTest.articles&explanation=this is a new article for intergration test&email=aNewArticle@ucsb.edu&dateAdded=2022-04-30T04:00:20")
+                                post("/api/articles/post?title=Another Article: Explore Intergration Test&url=https.//anotherIntegrationTest.articles&explanation=this is another new article for intergration test&email=anotherArticle@gmail.com&dateAdded=2022-04-30T04:00:20")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
