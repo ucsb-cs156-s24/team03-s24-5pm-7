@@ -144,7 +144,7 @@ function HelpRequestForm({
             <Form.Control
               data-testid="HelpRequestForm-solved"
               id="solved"
-              type="text"
+              type="switch"
               isInvalid={Boolean(errors.solved)}
               {...register("solved", {
                 required: "solved is required.",
