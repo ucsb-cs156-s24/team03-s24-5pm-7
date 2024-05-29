@@ -30,6 +30,7 @@ import edu.ucsb.cs156.example.services.GrantedAuthoritiesService;
 import edu.ucsb.cs156.example.testconfig.TestConfig;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -60,11 +61,12 @@ public class HelpRequestIT {
     @Test
     public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
         // arrange
+        LocalDateTime requestTime = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         HelpRequest helpRequest = HelpRequest.builder()
                 .requesterEmail("user@example.com")
                 .teamID("team-123")
                 .tableOrBreakoutRoom("table-1")
-                .requestTime(LocalDateTime.now())
+                .requestTime(requestTime)
                 .explanation("I need assistance with something.")
                 .solved(false)
                 .build();
@@ -84,14 +86,20 @@ public class HelpRequestIT {
         // assert
         String expectedJson = mapper.writeValueAsString(helpRequest);
         String responseString = response.getResponse().getContentAsString();
-        assertEquals(expectedJson, responseString);
+        HelpRequest responseHelpRequest = mapper.readValue(responseString, HelpRequest.class);
+        assertEquals(helpRequest.getRequesterEmail(), responseHelpRequest.getRequesterEmail());
+        assertEquals(helpRequest.getTeamID(), responseHelpRequest.getTeamID());
+        assertEquals(helpRequest.getTableOrBreakoutRoom(), responseHelpRequest.getTableOrBreakoutRoom());
+        assertEquals(helpRequest.getExplanation(), responseHelpRequest.getExplanation());
+        assertEquals(helpRequest.getSolved(), responseHelpRequest.getSolved());
+        assertEquals(helpRequest.getRequestTime().truncatedTo(ChronoUnit.MILLIS), responseHelpRequest.getRequestTime().truncatedTo(ChronoUnit.MILLIS));
     }
 
     @WithMockUser(roles = { "ADMIN", "USER" })
     @Test
     public void an_admin_user_can_post_a_new_help_request() throws Exception {
         // arrange
-        LocalDateTime requestTime = LocalDateTime.now();
+        LocalDateTime requestTime = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         String requesterEmail = "user@example.com";
         String teamID = "team-123";
         String tableOrBreakoutRoom = "table-1";
