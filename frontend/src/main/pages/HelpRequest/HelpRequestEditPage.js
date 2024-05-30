@@ -11,10 +11,10 @@ export default function HelpRequestEditPage({storybook=false}) {
   const { data: helpRequest, _error, _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      [`/api/helprequest?id=${id}`],
+      [`/api/helprequests?id=${id}`],
       {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
         method: "GET",
-        url: `/api/helprequest`,
+        url: `/api/helprequests`,
         params: {
           id
         }
@@ -23,7 +23,7 @@ export default function HelpRequestEditPage({storybook=false}) {
 
 
   const objectToAxiosPutParams = (helpRequest) => ({
-    url: "/api/helprequest",
+    url: "/api/helprequests",
     method: "PUT",
     params: {
       id: helpRequest.id,
@@ -39,14 +39,14 @@ export default function HelpRequestEditPage({storybook=false}) {
   });
 
   const onSuccess = (helpRequest) => {
-    toast(`HelpRequest Updated - id: ${helpRequest.id} teamId: ${helpRequest.teamId}`);
+    toast(`Help Request Updated - id: ${helpRequest.id}`);
   }
 
   const mutation = useBackendMutation(
     objectToAxiosPutParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    [`/api/helprequest?id=${id}`]
+    [`/api/helprequests?id=${id}`]
   );
 
   const { isSuccess } = mutation
@@ -62,7 +62,7 @@ export default function HelpRequestEditPage({storybook=false}) {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Edit HelpRequest</h1>
+        <h1>Edit Help Request</h1>
         {
           helpRequest && <HelpRequestForm initialContents={helpRequest} submitAction={onSubmit} buttonLabel="Update" />
         }

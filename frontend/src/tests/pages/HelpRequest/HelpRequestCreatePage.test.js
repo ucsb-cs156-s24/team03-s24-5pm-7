@@ -7,6 +7,7 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -30,7 +31,7 @@ jest.mock('react-router-dom', () => {
 
 describe("HelpRequestCreatePage tests", () => {
 
-    const axiosMock =new AxiosMockAdapter(axios);
+    const axiosMock = new AxiosMockAdapter(axios);
 
     beforeEach(() => {
         axiosMock.reset();
@@ -53,17 +54,17 @@ describe("HelpRequestCreatePage tests", () => {
     test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
         const queryClient = new QueryClient();
-        const helpRequest = {
-            id: 4,
-            requesterEmail: "gracefeng@ucsb.edu",
-            teamId: "15",
-            tableOrBreakoutRoom: "7",
-            requestTime: "2022-02-02T00:00",
-            explanation: "Dokku deployment issues.",
-            solved: "true"
-        };
+        const helpRequestResponse = helpRequestFixtures.oneHelpRequest;
+        const helpRequestInput = {
+            "requesterEmail": "gracefeng@ucsb.edu",
+            "teamId": "s24-4pm-3",
+            "tableOrBreakoutRoom": "table 3",
+            "requestTime": "2024-05-07T22:51",
+            "explanation": "I lost my glasses",
+            "solved": false
+        }
 
-        axiosMock.onPost("/api/helprequest/post").reply( 202, helpRequest );
+        axiosMock.onPost("/api/helprequests/post").reply( 202, helpRequestResponse );
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -83,33 +84,27 @@ describe("HelpRequestCreatePage tests", () => {
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
         const explanationField = screen.getByTestId("HelpRequestForm-explanation");
         const solvedField = screen.getByTestId("HelpRequestForm-solved");
+
+        fireEvent.change(requesterEmailField, { target: { value: helpRequestInput.requesterEmail } });
+        fireEvent.change(teamIdField, { target: { value: helpRequestInput.teamId } });
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: helpRequestInput.tableOrBreakoutRoom } });
+        fireEvent.change(requestTimeField, { target: { value: helpRequestInput.requestTime } });
+        fireEvent.change(explanationField, { target: { value: helpRequestInput.explanation } });
+        fireEvent.change(solvedField, { target: { value: helpRequestInput.solved } });
+
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
-
-        fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } });
-        fireEvent.change(teamIdField, { target: { value: '15' } });
-        fireEvent.change(tableOrBreakoutRoomField, { target: { value: '7' } });
-        fireEvent.change(requestTimeField, { target: { value: '2022-02-02T00:00' } });
-        fireEvent.change(explanationField, { target: { value: 'Dokku deployment issues.' } });
-        fireEvent.change(solvedField, { target: { value: 'true' } });
-
         expect(submitButton).toBeInTheDocument();
 
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
-        expect(axiosMock.history.post[0].params).toEqual(
-            {
-            "requesterEmail": "gracefeng@ucsb.edu",
-            "teamId": "15",
-            "tableOrBreakoutRoom": "7",
-            "requestTime": "2022-02-02T00:00",
-            "explanation": "Dokku deployment issues.",
-            "solved": "true"
-        });
 
-        expect(mockToast).toBeCalledWith("New helpRequest Created - id: 4 teamId: 15");
+        expect(axiosMock.history.post[0].params).toEqual(helpRequestInput);
+
+        expect(mockToast).toBeCalledWith("New helpRequest Created - id: 1");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
     });
+
 
 });

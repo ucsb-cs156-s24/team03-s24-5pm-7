@@ -23,7 +23,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/helprequest/all', (_req, res, ctx) => {
+        rest.get('/api/helprequests/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -39,7 +39,7 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/helprequest/all', (_req, res, ctx) => {
+        rest.get('/api/helprequests/all', (_req, res, ctx) => {
             return res(ctx.json(helpRequestFixtures.threeHelpRequests));
         }),
     ],
@@ -55,10 +55,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/helprequest/all', (_req, res, ctx) => {
+        rest.get('/api/helprequests/all', (_req, res, ctx) => {
             return res(ctx.json(helpRequestFixtures.threeHelpRequests));
         }),
-        rest.delete('/api/helprequest', (req, res, ctx) => {
+        rest.delete('/api/helprequests', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),

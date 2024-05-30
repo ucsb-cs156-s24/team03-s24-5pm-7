@@ -18,17 +18,17 @@ export default function HelpRequestIndexPage() {
                 href="/helprequest/create"
                 style={{ float: "right" }}
             >
-                Create HelpRequest 
+                Create Help Request
             </Button>
         )
     } 
   }
   
-  const { data: dates, error: _error, status: _status } =
+  const { data: helpRequests, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/helprequest/all"],
-      { method: "GET", url: "/api/helprequest/all" },
+      ["/api/helprequests/all"],
+      { method: "GET", url: "/api/helprequests/all" },
       []
     );
 
@@ -36,8 +36,8 @@ export default function HelpRequestIndexPage() {
     <BasicLayout>
       <div className="pt-2">
         {createButton()}
-        <h1>HelpRequest</h1>
-        <HelpRequestTable dates={dates} currentUser={currentUser} />
+        <h1>Help Requests</h1>
+        <HelpRequestTable helpRequests={helpRequests} currentUser={currentUser} />
       </div>
     </BasicLayout>
   )

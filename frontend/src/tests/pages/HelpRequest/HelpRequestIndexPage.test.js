@@ -1,3 +1,4 @@
+
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -46,7 +47,7 @@ describe("HelpRequestIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/helprequest/all").reply(200, []);
+        axiosMock.onGet("/api/helprequests/all").reply(200, []);
 
         // act
         render(
@@ -59,9 +60,9 @@ describe("HelpRequestIndexPage tests", () => {
 
         // assert
         await waitFor( ()=>{
-            expect(screen.getByText(/Create HelpRequest/)).toBeInTheDocument();
+            expect(screen.getByText(/Create Help Request/)).toBeInTheDocument();
         });
-        const button = screen.getByText(/Create HelpRequest/);
+        const button = screen.getByText(/Create Help Request/);
         expect(button).toHaveAttribute("href", "/helprequest/create");
         expect(button).toHaveAttribute("style", "float: right;");
     });
@@ -71,7 +72,7 @@ describe("HelpRequestIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
+        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threeHelpRequests);
 
         // act
         render(
@@ -88,7 +89,7 @@ describe("HelpRequestIndexPage tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
         // assert that the Create button is not present when user isn't an admin
-        expect(screen.queryByText(/Create HelpRequest/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Create Help Request/)).not.toBeInTheDocument();
 
     });
 
@@ -97,7 +98,7 @@ describe("HelpRequestIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/helprequest/all").timeout();
+        axiosMock.onGet("/api/helprequests/all").timeout();
         const restoreConsole = mockConsole();
 
         // act
@@ -113,7 +114,7 @@ describe("HelpRequestIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/helprequest/all");
+        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/helprequests/all");
         restoreConsole();
 
         expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
@@ -123,8 +124,8 @@ describe("HelpRequestIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
-        axiosMock.onDelete("/api/helprequest").reply(200, "HelpRequest with id 1 was deleted");
+        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threeHelpRequests);
+        axiosMock.onDelete("/api/helprequests").reply(200, "Help Request with id 1 was deleted");
 
         // act
         render(
@@ -147,7 +148,7 @@ describe("HelpRequestIndexPage tests", () => {
         fireEvent.click(deleteButton);
 
         // assert
-        await waitFor(() => { expect(mockToast).toBeCalledWith("HelpRequest with id 1 was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("Help Request with id 1 was deleted") });
 
     });
 
