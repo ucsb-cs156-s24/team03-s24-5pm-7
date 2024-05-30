@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -22,10 +23,10 @@ Default.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/helprequest', (_req, res, ctx) => {
+        rest.get('/api/helprequests', (_req, res, ctx) => {
             return res(ctx.json(helpRequestFixtures.threeHelpRequests[0]));
         }),
-        rest.put('/api/helprequest', async (req, res, ctx) => {
+        rest.put('/api/helprequests', async (req, res, ctx) => {
             var reqBody = await req.text();
             window.alert("PUT: " + req.url + " and body: " + reqBody);
             return res(ctx.status(200),ctx.json({}));
