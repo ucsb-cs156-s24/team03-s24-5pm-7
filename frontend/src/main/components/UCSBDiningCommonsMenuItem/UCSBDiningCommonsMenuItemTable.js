@@ -11,6 +11,8 @@ export default function UCSBDiningCommonsMenuItemTable({
     currentUser,
     testIdPrefix = "UCSBDiningCommonsMenuItemTable" }) {
 
+        console.log(menuItems)
+
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
