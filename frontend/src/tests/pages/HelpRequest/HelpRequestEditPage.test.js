@@ -80,7 +80,7 @@ describe("HelpRequestEditPage tests", () => {
                 "teamId": "s24-4pm-3",
                 "tableOrBreakoutRoom": "table 3",
                 "requestTime": "2024-05-07T22:51",
-                "explanation": "I lost my glasses",
+                "explanation": "Dokku deployment issues",
                 "solved": false
             });
             axiosMock.onPut('/api/helprequests').reply(200, {
@@ -89,7 +89,7 @@ describe("HelpRequestEditPage tests", () => {
                 "teamId": "s24-4pm-4",
                 "tableOrBreakoutRoom": "table 4",
                 "requestTime": "2024-05-07T22:52",
-                "explanation": "I found my glasses",
+                "explanation": "Dokku deployment issues",
                 "solved": true
             });
         });
@@ -128,7 +128,7 @@ describe("HelpRequestEditPage tests", () => {
             expect(teamIdField).toHaveValue("s24-4pm-3")
             expect(tableOrBreakoutRoomField).toHaveValue("table 3")
             expect(requestTimeField).toHaveValue("2024-05-07T22:51")
-            expect(explanationField).toHaveValue("I lost my glasses")
+            expect(explanationField).toHaveValue("Dokku deployment issues")
             expect(solvedField).not.toBeChecked();
         });
 
@@ -155,7 +155,7 @@ describe("HelpRequestEditPage tests", () => {
             expect(teamIdField).toHaveValue("s24-4pm-3")
             expect(tableOrBreakoutRoomField).toHaveValue("table 3")
             expect(requestTimeField).toHaveValue("2024-05-07T22:51")
-            expect(explanationField).toHaveValue("I lost my glasses")
+            expect(explanationField).toHaveValue("Dokku deployment issues")
             expect(solvedField).not.toBeChecked();
 
             const submitButton = screen.getByTestId("HelpRequestForm-submit");
@@ -165,7 +165,7 @@ describe("HelpRequestEditPage tests", () => {
             fireEvent.change(teamIdField, { target: { value: 's24-4pm-4' } });
             fireEvent.change(tableOrBreakoutRoomField, { target: { value: 'table 4' } });
             fireEvent.change(requestTimeField, { target: { value: '2024-05-07T22:52' } });
-            fireEvent.change(explanationField, { target: { value: 'I found my glasses' } });
+            fireEvent.change(explanationField, { target: { value: 'Dokku deployment issues' } });
             fireEvent.click(solvedField);
 
             fireEvent.click(submitButton);
@@ -181,7 +181,7 @@ describe("HelpRequestEditPage tests", () => {
                 "teamId": "s24-4pm-4",
                 "tableOrBreakoutRoom": "table 4",
                 "requestTime": "2024-05-07T22:52",
-                "explanation": "I found my glasses",
+                "explanation": "Dokku deployment issues",
                 "solved": true
             })); // posted object
 

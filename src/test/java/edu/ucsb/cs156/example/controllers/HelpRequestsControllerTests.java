@@ -218,7 +218,7 @@ public class HelpRequestsControllerTests extends ControllerTestCase {
         var helpRequestEdited = HelpRequest.builder()
                 .requesterEmail("pconrad@ucsb.edu")
                 .requestTime(LocalDateTime.parse("2023-01-03T00:00:00"))
-                .explanation("I found my glasses")
+                .explanation("Dokku deployment issues")
                 .tableOrBreakoutRoom("table 4")
                 .teamId("s24-4pm-4")
                 .solved(true)

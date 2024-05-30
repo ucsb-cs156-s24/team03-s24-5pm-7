@@ -5,7 +5,7 @@ const helpRequestFixtures = {
         "teamId": "s24-4pm-3",
         "tableOrBreakoutRoom": "table 3",
         "requestTime": "2024-05-07T22:51:00",
-        "explanation": "I lost my glasses",
+        "explanation": "Dokku deployment issues",
         "solved": false
     },
     threeHelpRequests: [
@@ -15,7 +15,7 @@ const helpRequestFixtures = {
             "teamId": "s24-4pm-3",
             "tableOrBreakoutRoom": "table 3",
             "requestTime": "2024-05-07T22:51:00",
-            "explanation": "I lost my glasses",
+            "explanation": "Dokku deployment issues",
             "solved": false
         },
         {
@@ -24,7 +24,7 @@ const helpRequestFixtures = {
             "teamId": "s24-4pm-3",
             "tableOrBreakoutRoom": "table 3",
             "requestTime": "2024-04-07T22:51:00",
-            "explanation": "I found my glasses",
+            "explanation": "Dokku deployment issues",
             "solved": true
         },
         {

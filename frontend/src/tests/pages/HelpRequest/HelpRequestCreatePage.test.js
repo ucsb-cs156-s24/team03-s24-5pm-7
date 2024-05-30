@@ -60,7 +60,7 @@ describe("HelpRequestCreatePage tests", () => {
             "teamId": "s24-4pm-3",
             "tableOrBreakoutRoom": "table 3",
             "requestTime": "2024-05-07T22:51",
-            "explanation": "I lost my glasses",
+            "explanation": "Dokku deployment issues",
             "solved": false
         }
 
