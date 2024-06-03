@@ -18,11 +18,12 @@ import edu.ucsb.cs156.example.WebTestCase;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 
 public class RecommendationRequestWebIT extends WebTestCase{
+
     @Test
     public void admin_user_can_create_edit_delete_recommendationrequest() throws Exception {
         setupUser(true);
 
-        page.getByText("UCSBRecommendationRequest").click();
+        page.getByText("Recommendation Request").click();
 
         page.getByText("Create Recommendation Request").click();
         assertThat(page.getByText("Create New RecommendationRequest")).isVisible();
@@ -33,28 +34,28 @@ public class RecommendationRequestWebIT extends WebTestCase{
         page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2022-03-11T00:00:00");
         page.getByTestId("RecommendationRequestForm-done").click();
         page.getByTestId("RecommendationRequestForm-submit").click();
-        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-explanation"))
+        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-Explanation"))
                 .hasText("please");
 
         page.getByTestId("RecommendationRequestTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit Recommendation Request")).isVisible();
-        page.getByTestId("RecommendationRequestTable-explanation").fill("THE BEST");
-        page.getByTestId("ArticlesForm-submit").click();
+        page.getByTestId("RecommendationRequestForm-explanation").fill("THE BEST");
+        page.getByTestId("RecommendationRequestForm-submit").click();
 
-        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-explanation")).hasText("THE BEST");
+        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-Explanation")).hasText("THE BEST");
 
         page.getByTestId("RecommendationRequestTable-cell-row-0-col-Delete-button").click();
 
-        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-name")).not().isVisible();
+        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-RequesterEmail")).not().isVisible();
     }
-
     @Test
+
     public void regular_user_cannot_create_recommendation_request() throws Exception {
         setupUser(false);
 
-        page.getByText("UCSBRecommendationRequest").click();
+        page.getByText("Recommendation Request").click();
 
         assertThat(page.getByText("Create Recommendation Request")).not().isVisible();
-        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-name")).not().isVisible();
+        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-id")).not().isVisible();
     }
 }
