@@ -1,43 +1,42 @@
 const helpRequestFixtures = {
     oneHelpRequest: {
-        "id": "1",
+        "id": 1,
         "requesterEmail": "gracefeng@ucsb.edu",
-        "teamID": "15",
-        "tableOrBreakoutRoom": "7",
-        "requestTime": "2022-01-02T12:00:00",
-        "explanation": "Dokku deployment issues.",
-        "solved": true
+        "teamId": "s24-4pm-3",
+        "tableOrBreakoutRoom": "table 3",
+        "requestTime": "2024-05-07T22:51:00",
+        "explanation": "Dokku deployment issues",
+        "solved": false
     },
     threeHelpRequests: [
         {
-            "id": "1",
+            "id": 1,
             "requesterEmail": "gracefeng@ucsb.edu",
-            "teamID": "15",
-            "tableOrBreakoutRoom": "7",
-            "requestTime": "2022-01-02T12:00:00",
-            "explanation": "Dokku deployment issues.",
-            "solved": "true"
+            "teamId": "s24-4pm-3",
+            "tableOrBreakoutRoom": "table 3",
+            "requestTime": "2024-05-07T22:51:00",
+            "explanation": "Dokku deployment issues",
+            "solved": false
         },
         {
-            "id": "2",
+            "id": 2,
             "requesterEmail": "gracefeng@ucsb.edu",
-            "teamID": "16",
-            "tableOrBreakoutRoom": "8",
-            "requestTime": "2022-04-03T12:00:00",
-            "explanation": "Dokku deployment issues.",
-            "solved": "true"
+            "teamId": "s24-4pm-3",
+            "tableOrBreakoutRoom": "table 3",
+            "requestTime": "2024-04-07T22:51:00",
+            "explanation": "Dokku deployment issues",
+            "solved": true
         },
         {
-            "id": "3",
-            "requesterEmail": "gracefeng@ucsb.edu",
-            "teamID": "17",
-            "tableOrBreakoutRoom": "9",
-            "requestTime": "2022-07-04T12:00:00",
-            "explanation": "Dokku deployment issues.",
-            "solved": "false"
-        },
+            "id": 3,
+            "requesterEmail": "pconrad@ucsb.edu",
+            "teamId": "s24-4pm-4",
+            "tableOrBreakoutRoom": "breakout room 4",
+            "requestTime": "2024-07-07T22:51:00",
+            "explanation": "How to exit vim",
+            "solved": false
+        }
     ]
-};
-
+}
 
 export { helpRequestFixtures };

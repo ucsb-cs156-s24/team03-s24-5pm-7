@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function HelpRequestCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (helpRequest) => ({
-    url: "/api/helprequest/post",
+    url: "/api/helprequests/post",
     method: "POST",
     params: {
       requesterEmail: helpRequest.requesterEmail,
@@ -20,14 +20,14 @@ export default function HelpRequestCreatePage({storybook=false}) {
   });
 
   const onSuccess = (helpRequest) => {
-    toast(`New helpRequest Created - id: ${helpRequest.id} teamId: ${helpRequest.teamId}`);
+    toast(`New helpRequest Created - id: ${helpRequest.id}`);
   }
 
   const mutation = useBackendMutation(
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/helprequest/all"]
+     ["/api/helprequests/all"]
      );
 
   const { isSuccess } = mutation
@@ -43,7 +43,7 @@ export default function HelpRequestCreatePage({storybook=false}) {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Create New HelpRequest</h1>
+        <h1>Create New Help Request</h1>
 
         <HelpRequestForm submitAction={onSubmit} />
 

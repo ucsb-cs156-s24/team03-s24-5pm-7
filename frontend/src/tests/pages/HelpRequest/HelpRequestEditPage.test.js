@@ -27,7 +27,7 @@ jest.mock('react-router-dom', () => {
         __esModule: true,
         ...originalModule,
         useParams: () => ({
-            id: 4
+            id: 17
         }),
         Navigate: (x) => { mockNavigate(x); return null; }
     };
@@ -44,7 +44,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequest", { params: { id: 4 } }).timeout();
+            axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -59,7 +59,7 @@ describe("HelpRequestEditPage tests", () => {
                     </MemoryRouter>
                 </QueryClientProvider>
             );
-            await screen.findByText("Edit HelpRequest");
+            await screen.findByText("Edit Help Request");
             expect(screen.queryByTestId("HelpRequestForm-requesterEmail")).not.toBeInTheDocument();
             restoreConsole();
         });
@@ -74,23 +74,23 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequest", { params: { id: 4 } }).reply(200, {
-                id: 4,
-                requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
-                tableOrBreakoutRoom: "7",
-                requestTime: "2022-03-14T15:00",
-                explanation: "Dokku deployment issues.",
-                solved: "true"
+            axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
+                "id": 17,
+                "requesterEmail": "gracefeng@ucsb.edu",
+                "teamId": "s24-4pm-3",
+                "tableOrBreakoutRoom": "table 3",
+                "requestTime": "2024-05-07T22:51",
+                "explanation": "Dokku deployment issues",
+                "solved": false
             });
-            axiosMock.onPut('/api/helprequest').reply(200, {
-                id: 4,
-                requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
-                tableOrBreakoutRoom: "7",
-                requestTime: "2022-03-14T15:00",
-                explanation: "Dokku deployment issues.",
-                solved: "true"
+            axiosMock.onPut('/api/helprequests').reply(200, {
+                "id": 17,
+                "requesterEmail": "gracefeng@ucsb.edu",
+                "teamId": "s24-4pm-4",
+                "tableOrBreakoutRoom": "table 4",
+                "requestTime": "2024-05-07T22:52",
+                "explanation": "Dokku deployment issues",
+                "solved": true
             });
         });
 
@@ -117,23 +117,19 @@ describe("HelpRequestEditPage tests", () => {
 
             await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-            const idField = screen.getByTestId("HelpRequestForm-id");
             const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
             const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
             const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
             const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
             const explanationField = screen.getByTestId("HelpRequestForm-explanation");
             const solvedField = screen.getByTestId("HelpRequestForm-solved");
-            const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-            expect(idField).toHaveValue("4");
-            expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu");
-            expect(teamIdField).toHaveValue("15");
-            expect(tableOrBreakoutRoomField).toHaveValue("7");
-            expect(requestTimeField).toHaveValue("2022-03-14T15:00");
-            expect(explanationField).toHaveValue("Dokku deployment issues.");
-            expect(solvedField).toHaveValue("true");
-            expect(submitButton).toBeInTheDocument();
+            expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu")
+            expect(teamIdField).toHaveValue("s24-4pm-3")
+            expect(tableOrBreakoutRoomField).toHaveValue("table 3")
+            expect(requestTimeField).toHaveValue("2024-05-07T22:51")
+            expect(explanationField).toHaveValue("Dokku deployment issues")
+            expect(solvedField).not.toBeChecked();
         });
 
         test("Changes when you click Update", async () => {
@@ -148,52 +144,47 @@ describe("HelpRequestEditPage tests", () => {
 
             await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-            const idField = screen.getByTestId("HelpRequestForm-id");
             const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
             const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
             const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
             const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
             const explanationField = screen.getByTestId("HelpRequestForm-explanation");
             const solvedField = screen.getByTestId("HelpRequestForm-solved");
+
+            expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu")
+            expect(teamIdField).toHaveValue("s24-4pm-3")
+            expect(tableOrBreakoutRoomField).toHaveValue("table 3")
+            expect(requestTimeField).toHaveValue("2024-05-07T22:51")
+            expect(explanationField).toHaveValue("Dokku deployment issues")
+            expect(solvedField).not.toBeChecked();
+
             const submitButton = screen.getByTestId("HelpRequestForm-submit");
-
-            expect(idField).toHaveValue("4");
-            expect(requesterEmailField).toHaveValue("gracefeng@ucsb.edu");
-            expect(teamIdField).toHaveValue("15");
-            expect(tableOrBreakoutRoomField).toHaveValue("7");
-            expect(requestTimeField).toHaveValue("2022-03-14T15:00");
-            expect(explanationField).toHaveValue("Dokku deployment issues.");
-            expect(solvedField).toHaveValue("true");
             expect(submitButton).toBeInTheDocument();
 
-            expect(submitButton).toBeInTheDocument();
-
-            fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } })
-            fireEvent.change(teamIdField, { target: { value: '15' } })
-            fireEvent.change(tableOrBreakoutRoomField, { target: { value: "7" } })
-            fireEvent.change(requestTimeField, { target: { value: "2022-03-14T15:00" } })
-            fireEvent.change(explanationField, { target: { value: "Dokku deployment issues." } })
-            fireEvent.change(solvedField, { target: { value: "true" } })
+            fireEvent.change(requesterEmailField, { target: { value: 'gracefeng@ucsb.edu' } });
+            fireEvent.change(teamIdField, { target: { value: 's24-4pm-4' } });
+            fireEvent.change(tableOrBreakoutRoomField, { target: { value: 'table 4' } });
+            fireEvent.change(requestTimeField, { target: { value: '2024-05-07T22:52' } });
+            fireEvent.change(explanationField, { target: { value: 'Dokku deployment issues' } });
+            fireEvent.click(solvedField);
 
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("HelpRequest Updated - id: 4 teamId: 15");
+            expect(mockToast).toBeCalledWith("Help Request Updated - id: 17");
             expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
-            expect(axiosMock.history.put[0].params).toEqual({ id: 4 });
+            expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                requesterEmail: 'gracefeng@ucsb.edu',
-                teamId: "15",
-                tableOrBreakoutRoom: "7",
-                requestTime: "2022-03-14T15:00",
-                explanation: "Dokku deployment issues.",
-                solved: "true"
+                "requesterEmail": "gracefeng@ucsb.edu",
+                "teamId": "s24-4pm-4",
+                "tableOrBreakoutRoom": "table 4",
+                "requestTime": "2024-05-07T22:52",
+                "explanation": "Dokku deployment issues",
+                "solved": true
             })); // posted object
 
         });
-
-       
     });
 });
