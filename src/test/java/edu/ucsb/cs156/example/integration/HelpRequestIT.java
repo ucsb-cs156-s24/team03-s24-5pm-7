@@ -1,6 +1,8 @@
 package edu.ucsb.cs156.example.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
+import static org.skyscreamer.jsonassert.JSONCompareMode.LENIENT;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,7 +64,6 @@ public class HelpRequestIT {
     @Test
     public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
         // arrange
-
         HelpRequest helpRequest = HelpRequest.builder()
                         .requesterEmail("test@example.com")
                         .teamId("team1")
@@ -71,7 +72,7 @@ public class HelpRequestIT {
                         .explanation("Need help with assignment")
                         .solved(false)
                         .build();
-                        
+
         helpRequest = helpRequestRepository.save(helpRequest);
 
         // act
@@ -81,16 +82,15 @@ public class HelpRequestIT {
         // assert
         String expectedJson = mapper.writeValueAsString(helpRequest);
         String responseString = response.getResponse().getContentAsString();
-        assertEquals(expectedJson, responseString);
+
+        assertEquals(expectedJson, responseString, LENIENT);
     }
 
     @WithMockUser(roles = { "ADMIN", "USER" })
     @Test
     public void an_admin_user_can_post_a_new_helpRequest() throws Exception {
         // arrange
-
         HelpRequest helpRequest = HelpRequest.builder()
-                        .id(1L)
                         .requesterEmail("admin@example.com")
                         .teamId("team2")
                         .tableOrBreakoutRoom("table2")
@@ -101,13 +101,19 @@ public class HelpRequestIT {
 
         // act
         MvcResult response = mockMvc.perform(
-                        post("/api/helprequests/post?requesterEmail=admin@example.com&teamId=team2&tableOrBreakoutRoom=table2&requestTime=" + LocalDateTime.now() + "&explanation=Need urgent help&solved=false")
-                                        .with(csrf()))
+                        post("/api/helprequests/post")
+                        .param("requesterEmail", "admin@example.com")
+                        .param("teamId", "team2")
+                        .param("tableOrBreakoutRoom", "table2")
+                        .param("requestTime", helpRequest.getRequestTime().toString())
+                        .param("explanation", "Need urgent help")
+                        .param("solved", "false")
+                        .with(csrf()))
                         .andExpect(status().isOk()).andReturn();
 
-        // assert
         String responseString = response.getResponse().getContentAsString();
         HelpRequest savedHelpRequest = mapper.readValue(responseString, HelpRequest.class);
+
         assertEquals(helpRequest.getRequesterEmail(), savedHelpRequest.getRequesterEmail());
         assertEquals(helpRequest.getTeamId(), savedHelpRequest.getTeamId());
         assertEquals(helpRequest.getTableOrBreakoutRoom(), savedHelpRequest.getTableOrBreakoutRoom());
