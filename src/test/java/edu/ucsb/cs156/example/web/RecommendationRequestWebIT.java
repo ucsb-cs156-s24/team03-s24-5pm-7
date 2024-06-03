@@ -25,23 +25,23 @@ public class RecommendationRequestWebIT extends WebTestCase {
 
         page.getByText("Create Recommendation Request").click();
         assertThat(page.getByText("Create New RecommendationRequest")).isVisible();
-        page.getByTestId("RecommendationRequestForm-requesterEmail").fill("cgaucho@ucsb.edu");
-        page.getByTestId("RecommendationRequestForm-professorEmail").fill("phtcon@ucsb.edu");
-        page.getByTestId("RecommendationRequestForm-explanation").fill("BS/MS");
-        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2022-02-02T00:00");
-        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2022-03-02T00:00");
+        page.getByTestId("RecommendationRequestForm-requesterEmail").fill("adil@ucsb.edu");
+        page.getByTestId("RecommendationRequestForm-professorEmail").fill("pconrad@ucsb.edu");
+        page.getByTestId("RecommendationRequestForm-explanation").fill("please");
+        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2022-03-02T00:00");
+        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2022-03-04T00:00");
         page.getByTestId("RecommendationRequestForm-done").click();
         page.getByTestId("RecommendationRequestForm-submit").click();
 
         assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-requesterEmail"))
-                .hasText("cgaucho@ucsb.edu");
+                .hasText("adil@ucsb.edu");
 
         page.getByTestId("RecommendationRequestTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit Recommendation Request")).isVisible();
-        page.getByTestId("RecommendationRequestForm-requesterEmail").fill("test@ucsb.edu");
+        page.getByTestId("RecommendationRequestForm-requesterEmail").fill("a@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-submit").click();
 
-        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-requesterEmail")).hasText("test@ucsb.edu");
+        assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-requesterEmail")).hasText("a@ucsb.edu");
 
         page.getByTestId("RecommendationRequestTable-cell-row-0-col-Delete-button").click();
 
