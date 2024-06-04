@@ -22,7 +22,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
+        rest.get('/api/MenuItemReview/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -38,7 +38,7 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
+        rest.get('/api/MenuItemReview/all', (_req, res, ctx) => {
             return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
         }),
     ],
@@ -54,10 +54,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/menuitemreviews/all', (_req, res, ctx) => {
+        rest.get('/api/MenuItemReview/all', (_req, res, ctx) => {
             return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
         }),
-        rest.delete('/api/menuitemreviews', (req, res, ctx) => {
+        rest.delete('/api/MenuItemReview', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),

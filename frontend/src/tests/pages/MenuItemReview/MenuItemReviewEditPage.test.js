@@ -43,7 +43,7 @@ describe("MenuItemReviewEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/menuitemreviews", { params: { id: 1 } }).timeout();
+            axiosMock.onGet("/api/MenuItemReview", { params: { id: 1 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -73,7 +73,7 @@ describe("MenuItemReviewEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/menuitemreviews", { params: { id: 1 } }).reply(200, {
+            axiosMock.onGet("/api/MenuItemReview", { params: { id: 1 } }).reply(200, {
                 id: 1,
                 itemId: "27",
                 reviewerEmail: "cgaucho@ucsb.edu",
@@ -81,7 +81,7 @@ describe("MenuItemReviewEditPage tests", () => {
                 dateReviewed: "2022-04-20T10:00:00",
                 comments: "blend af but edible i guess"
             });
-            axiosMock.onPut('/api/menuitemreviews').reply(200, {
+            axiosMock.onPut('/api/MenuItemReview').reply(200, {
                 id: "1",
                 itemId: "28",
                 reviewerEmail: "koraykondakci@ucsb.edu",

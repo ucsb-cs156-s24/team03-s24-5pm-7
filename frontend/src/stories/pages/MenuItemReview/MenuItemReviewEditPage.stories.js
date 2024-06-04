@@ -22,10 +22,10 @@ Default.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/menuitemreviews', (_req, res, ctx) => {
+        rest.get('/api/MenuItemReview', (_req, res, ctx) => {
             return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews[0]));
         }),
-        rest.put('/api/menuitemreviews', async (req, res, ctx) => {
+        rest.put('/api/MenuItemReview', async (req, res, ctx) => {
             var reqBody = await req.text();
             window.alert("PUT: " + req.url + " and body: " + reqBody);
             return res(ctx.status(200),ctx.json({}));

@@ -8,7 +8,7 @@ export default function MenuItemReviewCreatePage({storybook=false}) {
 
 
   const objectToAxiosParams = (review) => ({
-    url: "/api/menuitemreviews/post",
+    url: "/api/MenuItemReview/post",
     method: "POST",
     params: {
      itemId: review.itemId,
@@ -27,7 +27,7 @@ export default function MenuItemReviewCreatePage({storybook=false}) {
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/menuitemreviews/all"] // mutation makes this key stale so that pages relying on it reload
+     ["/api/MenuItemReview/all"] // mutation makes this key stale so that pages relying on it reload
      );
 
   const { isSuccess } = mutation
