@@ -21,14 +21,14 @@ public class MenuItemReviewWebIT extends WebTestCase {
     public void admin_user_can_create_edit_delete_menu_item_review() throws Exception {
         setupUser(true);
 
-        page.getByText("MenuItemReview").click();
+        page.getByText("Menu Item Reviews").click();
 
         page.getByText("Create MenuItemReview").click();
         assertThat(page.getByText("Create New Review")).isVisible();
         page.getByTestId("MenuItemReviewForm-itemId").fill("1");
         page.getByTestId("MenuItemReviewForm-reviewerEmail").fill("koraykondakci@ucsb.edu");
         page.getByTestId("MenuItemReviewForm-stars").fill("5");
-        page.getByTestId("MenuItemReviewForm-dateReviewed").fill("2022-01-03T00:00:00");
+        page.getByTestId("MenuItemReviewForm-dateReviewed").fill("2022-01-03T00:00");
         page.getByTestId("MenuItemReviewForm-comments").fill("great");
         page.getByTestId("MenuItemReviewForm-submit").click();
 
@@ -51,7 +51,7 @@ public class MenuItemReviewWebIT extends WebTestCase {
     public void regular_user_cannot_create_menu_item_review() throws Exception {
         setupUser(false);
 
-        page.getByText("MenuItemReview").click();
+        page.getByText("Menu Item Reviews").click();
 
         assertThat(page.getByText("Create MenuItemReview")).not().isVisible();
         assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId")).not().isVisible();
